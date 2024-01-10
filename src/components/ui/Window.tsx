@@ -1,21 +1,21 @@
-import { SectionLayout } from "@/layouts"
-import { SectionLayoutHeaderPropsPartial } from "@/layouts/SectionLayout/components"
-import { BaseComponentProps } from "@/models"
+import { SectionLayout } from '@/layouts'
+import { type SectionLayoutHeaderPropsPartial } from '@/layouts/SectionLayout/components'
+import { type BaseComponentProps } from '@/models'
 
 interface WindowProps extends BaseComponentProps, SectionLayoutHeaderPropsPartial {
 }
 
 export const Window: React.FC<WindowProps> = ({ children, className, icon, title }) => {
-    return (
+  return (
         <SectionLayout
             {...{ className }}
         >
             <SectionLayout.Header
-                {...{icon, title}}
+                {...{ icon, title }}
             />
             <SectionLayout.Content>
                 {children}
             </SectionLayout.Content>
         </SectionLayout>
-    )
+  )
 }

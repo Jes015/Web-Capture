@@ -1,8 +1,8 @@
-import { IconRecord } from "@/assets/Icons"
-import { Button, Window } from "@/components/ui"
+import { IconRecord } from '@/assets/Icons'
+import { Button, Window } from '@/components/ui'
 
 export const RecordWindow = () => {
-    return (
+  return (
         <Window
             className="[max-width:12rem] w-full"
             title="Record Window"
@@ -75,5 +75,5 @@ export const RecordWindow = () => {
                 </footer>
             </div>
         </Window>
-    )
+  )
 }

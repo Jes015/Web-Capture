@@ -1,37 +1,36 @@
-import { Sheet } from "@/components/ui"
-import { BaseComponentProps, BaseComponentType } from "@/models"
-import { SectionLayoutHeader } from "./components"
+import { Sheet } from '@/components/ui'
+import { type BaseComponentProps, type BaseComponentType } from '@/models'
+import { SectionLayoutHeader } from './components'
 
 export const SectionLayout = ({ children, className }: BaseComponentProps) => {
-    return (
+  return (
         <Sheet
             as="section"
             className={
                 [
-                    'rounded-md',
-                    className
+                  'rounded-md',
+                  className
                 ].join(' ')
             }
         >
             {children}
         </Sheet>
-    )
+  )
 }
 
-
 export const SectionLayoutContent: BaseComponentType = ({ children, className }) => {
-    return (
+  return (
         <div
             className={
                 [
-                    'p-1',
-                    className
+                  'p-1',
+                  className
                 ].join(' ')
             }
         >
             {children}
         </div>
-    )
+  )
 }
 export const SectionLayoutFooter = () => { }
 
