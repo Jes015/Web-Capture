@@ -4,7 +4,6 @@ import { Button, Window } from '@/components/ui'
 export const RecordWindow = () => {
   return (
         <Window
-            className="[max-width:12rem] w-full"
             title="Record Window"
             icon={<IconRecord className="text-red-400 text-base" />}
         >

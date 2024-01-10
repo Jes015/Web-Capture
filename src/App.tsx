@@ -9,6 +9,9 @@ function App () {
       >
 
         <RecordWindow />
+        <RecordWindow />
+        <RecordWindow />
+        <RecordWindow />
       </div>
     </MainLayout>
   )

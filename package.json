@@ -13,7 +13,8 @@
   "dependencies": {
     "@fontsource/roboto": "^5.0.8",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-rnd": "^10.4.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.4.4",
