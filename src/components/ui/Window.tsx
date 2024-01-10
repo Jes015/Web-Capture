@@ -1,4 +1,4 @@
-import { SectionLayout, SectionLayoutContent, SectionLayoutHeader } from '@/layouts'
+import { SectionLayout } from '@/layouts'
 import { type SectionLayoutHeaderPropsPartial } from '@/layouts/SectionLayout/components'
 import { type BaseComponentProps } from '@/models'
 import { Rnd } from 'react-rnd'
@@ -28,13 +28,13 @@ export const Window: React.FC<WindowProps> = ({ children, className, icon, title
                     ].join(' ')
                 }
             >
-                <SectionLayoutHeader
+                <SectionLayout.Header
                     className='select-none w-full'
                     {...{ icon, title }}
                 />
-                <SectionLayoutContent className='w-full'>
+                <SectionLayout.Content className='w-full'>
                     {children}
-                </SectionLayoutContent>
+                </SectionLayout.Content>
             </SectionLayout>
         </Rnd>
   )

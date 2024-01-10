@@ -1,30 +1,30 @@
 import { IconGithub } from '@/assets/Icons'
-import { Sheet } from '@/components/ui'
 import { type BaseComponentType } from '@/models'
 
 export const MainLayout: BaseComponentType = ({ children }) => {
   return (
         <div className="flex flex-col [height:100svh] [height:100vh] [font-family:Roboto] bg-neutral-900 text-white [font-weight:500]">
-            <Sheet
-                as="header"
-                className="border-t-0 [border-inline:none] px-2 py-4 flex justify-between items-center"
+            <div
+                className="absolute z-[0] [height:100svh] [height:100vh] [width:100svw] flex flex-col justify-center items-center"
             >
                 <div
-                    className="flex items-center"
+                    className="flex flex-col justify-center opacity-10"
                 >
                     <span
-                        className="font-bold leading-3 pt-[0.18rem]"
+                        className="font-bold text-6xl pt-[0.18rem] select-none"
                     >
                         ScreenCapture
                     </span>
                 </div>
-                <div>
-                    <a href="https://github.com/Jes015/ScreenCapture" target="_blank">
-                        <IconGithub className="text-xl" />
+                <div
+                    className='flex gap-1'
+                >
+                    <a href="https://github.com/Jes015/ScreenCapture" target="_blank" className='opacity-10 hover:opacity-80 [transition-duration:0.3s]'>
+                        <IconGithub className="text-4xl" />
                     </a>
                 </div>
-            </Sheet>
-            <main className="flex-grow text-sm">
+            </div>
+            <main className="h-full text-sm">
                 {children}
             </main>
         </div>
