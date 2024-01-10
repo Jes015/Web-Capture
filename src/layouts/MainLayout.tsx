@@ -3,7 +3,7 @@ import { type BaseComponentType } from '@/models'
 
 export const MainLayout: BaseComponentType = ({ children }) => {
   return (
-        <div className="flex flex-col [height:100svh] [height:100vh] [font-family:Roboto] bg-neutral-900 text-white [font-weight:500]">
+        <div className="flex flex-col [height:100svh] [height:100vh] [font-family:Roboto] text-white [font-weight:500]">
             <div
                 className="absolute z-[0] [height:100svh] [height:100vh] [width:100svw] flex flex-col justify-center items-center"
             >
