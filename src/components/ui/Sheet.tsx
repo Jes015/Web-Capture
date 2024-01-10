@@ -1,7 +1,7 @@
 import { forwardRef, type HTMLAttributes } from 'react'
 
 interface SheetProps extends HTMLAttributes<HTMLDivElement> {
-  as: keyof JSX.IntrinsicElements
+  as?: keyof JSX.IntrinsicElements
 }
 
 export type SheetPropsPartial = Partial<SheetProps>
