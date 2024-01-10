@@ -1,14 +1,19 @@
-import { BaseComponentType } from "@/models"
+import { ButtonHTMLAttributes } from "react"
 
-export const Button: BaseComponentType = ({ children, className }) => {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+}
+
+export const Button: React.FC<ButtonProps> = ({ children, className, disabled, ...props }) => {
     return (
         <button
             className={
                 [
+                    disabled ? 'opacity-65 cursor-not-allowed' : '',
                     'border border-neutral-800 rounded-sm p-1 hover:bg-neutral-800 hover:border-neutral-700 hover:drop-shadow-sm [transition-duration:0.1s]',
                     className
-                ].join('')
+                ].join(' ')
             }
+            {...{ ...props, disabled }}
         >
             {children}
         </button>

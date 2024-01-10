@@ -14,7 +14,7 @@ export const SectionLayoutHeader: React.FC<SectionLayoutHeaderProps> = ({ title,
             as="header"
             className={
                 [
-                    '[border-inline:none] [border-top:none] bg-neutral-800 p-1 pt-2 border-neutral-700 cursor-pointer active:cursor-move',
+                    '[border-inline:none] [border-top:none] bg-neutral-900 p-1 pt-2 border-neutral-800 cursor-pointer select-none active:cursor-move',
                     className
                 ].join(' ')
             }

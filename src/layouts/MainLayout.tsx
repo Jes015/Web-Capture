@@ -24,7 +24,7 @@ export const MainLayout: BaseComponentType = ({ children }) => {
                     </a>
                 </div>
             </Sheet>
-            <main className="flex-grow">
+            <main className="flex-grow text-sm">
                 {children}
             </main>
         </div>
