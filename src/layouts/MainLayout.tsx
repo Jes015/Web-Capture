@@ -1,9 +1,9 @@
-import { IconGithub } from "@/assets/Icons"
-import { Sheet } from "@/components/ui"
-import { BaseComponentType } from "@/models"
+import { IconGithub } from '@/assets/Icons'
+import { Sheet } from '@/components/ui'
+import { type BaseComponentType } from '@/models'
 
 export const MainLayout: BaseComponentType = ({ children }) => {
-    return (
+  return (
         <div className="flex flex-col [height:100svh] [height:100vh] [font-family:Roboto] bg-neutral-900 text-white [font-weight:500]">
             <Sheet
                 as="header"
@@ -28,5 +28,5 @@ export const MainLayout: BaseComponentType = ({ children }) => {
                 {children}
             </main>
         </div>
-    )
+  )
 }

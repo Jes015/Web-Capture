@@ -1,7 +1,7 @@
 import { RecordWindow } from '@/components/feature'
 import { MainLayout } from '@/layouts'
 
-function App() {
+function App () {
   return (
     <MainLayout>
       <div
