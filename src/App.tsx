@@ -1,25 +1,16 @@
-import { useState } from 'react'
+import { RecordWindow } from '@/components/feature'
+import { MainLayout } from '@/layouts'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
+    <MainLayout>
+      <div
+        className='h-full flex justify-center items-center'
+      >
+
+        <RecordWindow />
       </div>
-      <h1 className='bg-amber-900'>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </MainLayout>
   )
 }
 
