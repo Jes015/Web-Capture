@@ -5,7 +5,7 @@ import { Rnd } from 'react-rnd'
 interface WindowProps extends BaseComponentProps, SectionLayoutHeaderPropsPartial {
 }
 
-export const Window: React.FC<WindowProps> = ({ children, className, icon, title }) => {
+export const Window: React.FC<WindowProps> = ({ children, className, icon, title, rightNode }) => {
   return (
         <Rnd
             default={{
@@ -30,7 +30,7 @@ export const Window: React.FC<WindowProps> = ({ children, className, icon, title
             >
                 <SectionLayout.Header
                     className='select-none w-full'
-                    {...{ icon, title }}
+                    {...{ icon, title, rightNode }}
                 />
                 <SectionLayout.Content className='w-full'>
                     {children}

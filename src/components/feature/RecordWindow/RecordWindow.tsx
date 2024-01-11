@@ -1,12 +1,34 @@
 import { IconRecord } from '@/assets/Icons'
 import { Button, Window } from '@/components/ui'
 
+import { type MutableRefObject } from 'react'
+import { RecordWindowDropdownMenu } from './components'
+import { useRecorder, useRecorderWindow } from './hooks'
+
 export const RecordWindow = () => {
+  const { isDisplayingVideo, toggleVideoVisibility } = useRecorderWindow()
+  const { error, recordingStatus, toggleRecordingStatus, videoSourceRef } = useRecorder()
+
+  const handleOnClickForStartRecording = () => {
+    void toggleRecordingStatus('on')
+  }
+
+  const handleOnClickForStopRecording = () => {
+    void toggleRecordingStatus('off')
+  }
+
+  const handleOnClickForDisplayVideo = () => {
+    toggleVideoVisibility()
+    console.log(isDisplayingVideo) // <--------------------------------------------------
+  }
+
   return (
         <Window
             title="Record Window"
             icon={<IconRecord className="text-red-400 text-base" />}
+            rightNode={<RecordWindowDropdownMenu />}
         >
+            <video onClick={handleOnClickForDisplayVideo} autoPlay muted ref={videoSourceRef as MutableRefObject<HTMLVideoElement | null>}></video>
             <div
                 className="flex flex-col gap-1 pt-1"
             >
@@ -66,12 +88,28 @@ export const RecordWindow = () => {
                     <Button disabled>
                         Pause
                     </Button>
-                    <Button
-                        className=" flex-grow"
-                    >
-                        Start
-                    </Button>
+                    {
+                        recordingStatus === 'off' && (
+                            <Button
+                                onClick={handleOnClickForStartRecording}
+                                className=" flex-grow"
+                            >
+                                Start
+                            </Button>
+                        )
+                    }
+                    {
+                        recordingStatus === 'on' && (
+                            <Button
+                                onClick={handleOnClickForStopRecording}
+                                className='flex-grow'
+                            >
+                                Stop
+                            </Button>
+                        )
+                    }
                 </footer>
+                {error}
             </div>
         </Window>
   )
