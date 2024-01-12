@@ -5,7 +5,6 @@ export const SectionLayoutContent: BaseComponentType = ({ children, className })
       <div
         className={
           [
-            'p-1',
             className
           ].join(' ')
         }
