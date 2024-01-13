@@ -40,6 +40,18 @@ export const WatchRecordedVideoWindow: React.FC<WatchRecordedVideoWindowProps> =
           <IconClose />
         </Button>
       }
+      rndconfig={{
+        enableResizing: true,
+        default: {
+          x: 0,
+          y: 0,
+          width: 500,
+          height: 320
+        },
+        maxWidth: 500,
+        maxHeight: 400,
+        lockAspectRatio: true
+      }}
     >
       <video
         ref={videoElementRef}
