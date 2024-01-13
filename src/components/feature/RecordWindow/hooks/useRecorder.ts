@@ -38,6 +38,7 @@ export const useRecorder = () => {
       void mediaRecorder.current.stopStreaming()
       void mediaRecorder.current.stopRecording()
 
+
       if (videoSourceRef.current != null) {
         videoSourceRef.current.srcObject = null
       }
@@ -46,10 +47,12 @@ export const useRecorder = () => {
     setRecordingStatus(newStatus)
   }
 
-  const getVideoAndAudioBlob = async () => {
-    return await mediaRecorder.current?.getVideoAndAudioBlob()
+  const setVideoAndAudioBlob = async () => {
+    const videoBlob = await mediaRecorder.current?.getVideoAndAudioBlob()
+    if (videoWatchRecordedSourceRef.current != null && videoBlob != null) {
+      videoWatchRecordedSourceRef.current.src = URL.createObjectURL(videoBlob)
+    }
   }
 
-
-  return { toggleRecordingStatus, recordingStatus, error, videoSourceRef, getVideoAndAudioBlob, videoWatchRecordedSourceRef }
+  return { toggleRecordingStatus, recordingStatus, error, videoSourceRef, setVideoAndAudioBlob, videoWatchRecordedSourceRef }
 }

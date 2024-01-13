@@ -1,11 +1,15 @@
 import { IconRecord } from '@/assets/Icons'
 import { Window } from '@/components/ui'
 
-import { RecordControls, RecordData, RecordVideo, RecordWindowDropdownMenu } from './components'
-import { RecorderProvider } from './services/context/recorder.provider'
-import { RecorderWindowProvider } from './services/context/recorderWindow.provider'
+import { type WindowData } from '@/models'
+import { RecordContent, RecordWindowDropdownMenu } from './components'
+import { RecorderProvider, RecorderWindowProvider } from './services/context/'
 
-export const RecordWindow = () => {
+interface RecordWindowProps {
+  windowData: WindowData
+}
+
+export const RecordWindow: React.FC<RecordWindowProps> = ({ windowData }) => {
   return (
         <RecorderWindowProvider>
             <RecorderProvider>
@@ -15,15 +19,7 @@ export const RecordWindow = () => {
                     rightNode={<RecordWindowDropdownMenu />}
                     className='overflow-hidden'
                 >
-                    <div
-                        className="relative overflow-hidden h-full"
-                    >
-                        <RecordVideo />
-                        <div className='absolute top-0 left-0 w-full h-full flex flex-col p-1 gap-1 pt-2 z-10'>
-                            <RecordData />
-                            <RecordControls />
-                        </div>
-                    </div>
+                   <RecordContent />
                 </Window>
             </RecorderProvider>
         </RecorderWindowProvider>
