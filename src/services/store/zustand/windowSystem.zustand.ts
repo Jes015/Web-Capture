@@ -1,4 +1,4 @@
-import { type RecordWindowData, type WatchRecordedWindowData, type WindowData, type WindowDataArray } from '@/models'
+import { type RecordWindowData, type WatchRecordingWindowData, type WindowData, type WindowDataArray } from '@/models'
 import { type UUID } from 'crypto'
 import { create } from 'zustand'
 
@@ -8,7 +8,7 @@ interface WindowSystemState {
 }
 
 interface WindowSystemActions {
-  addWindow: (newWindow: WindowData | RecordWindowData | WatchRecordedWindowData) => void
+  addWindow: (newWindow: WindowData | RecordWindowData | WatchRecordingWindowData) => void
   removeWindow: (windowId: UUID) => void
   setError: (message: string) => void
 }

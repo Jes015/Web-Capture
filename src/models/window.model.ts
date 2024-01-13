@@ -13,8 +13,8 @@ export interface WindowData {
   type: TWindowType
 }
 
-export interface WatchRecordedWindowData extends WindowData {
-  videoAndAudioBlob: Blob
+export interface WatchRecordingWindowData extends WindowData {
+  videoAndAudioBlob: Blob | null
   type: 'Watch Record'
 }
 
