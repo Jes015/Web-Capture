@@ -22,5 +22,5 @@ export const MainLayout: BaseComponentType = ({ children }) => {
       </div>
       <main className='h-full text-sm'>{children}</main>
     </div>
-  );
-};
+  )
+}

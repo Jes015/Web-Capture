@@ -23,7 +23,7 @@ export const Window: React.FC<WindowProps> = ({ children, className, icon, title
             <SectionLayout
                 className={
                     [
-                      'absolute w-full h-full',
+                      'flex flex-col absolute w-full h-full',
                       className
                     ].join(' ')
                 }
@@ -32,7 +32,7 @@ export const Window: React.FC<WindowProps> = ({ children, className, icon, title
                     className='select-none w-full'
                     {...{ icon, title, rightNode }}
                 />
-                <SectionLayout.Content className='w-full h-full'>
+                <SectionLayout.Content className='flex-grow w-full h-full'>
                     {children}
                 </SectionLayout.Content>
             </SectionLayout>

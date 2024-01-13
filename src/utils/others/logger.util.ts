@@ -1,9 +1,9 @@
-import { type ViteEnvironment } from '@/models'
+import { ViteEnvironment, type ViteEnvironmentType } from '@/models'
 
 export class Logger {
-  private readonly environment: ViteEnvironment
+  private readonly environment: ViteEnvironmentType
 
-  constructor (env: ViteEnvironment) {
+  constructor (env: ViteEnvironmentType) {
     this.environment = env
     this.welcomeMessage()
   }
@@ -16,7 +16,7 @@ export class Logger {
   }
 
   public message (message: unknown, title: string) {
-    if (this.environment === 'production') return
+    if (this.environment === ViteEnvironment.production) return
 
     console.group(title)
     console.log(message)
