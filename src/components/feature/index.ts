@@ -1,3 +1,4 @@
-export * from './RecordWindow/RecordWindow'
-export * from './WatchRecordedVideoWindow/WatchRecordedVideoWindow'
+export * from './AddWindowsDropdownMenu'
+export * from './RecordingWindow/RecordingWindow'
+export * from './WatchRecordingWindow/WatchRecordingWindow'
 

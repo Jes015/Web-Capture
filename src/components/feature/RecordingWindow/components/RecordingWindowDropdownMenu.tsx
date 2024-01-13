@@ -2,7 +2,7 @@ import { DropdownMenu, InputElement, SwitchInput } from '@/components/ui'
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 import { useRecorderWindowContext } from '../services/context'
 
-export const RecordWindowDropdownMenu = () => {
+export const RecordingWindowDropdownMenu = () => {
   const { isDisplayingVideo, toggleVideoVisibility } = useRecorderWindowContext()
 
   const handleOnClickForDisplayVideo = (newValue: boolean) => {
@@ -10,7 +10,7 @@ export const RecordWindowDropdownMenu = () => {
   }
 
   return (
-    <DropdownMenu triggerContent={<HamburgerMenuIcon className='text-neutral-400' />}>
+    <DropdownMenu triggerContent={<HamburgerMenuIcon className=' text-base' />}>
       <DropdownMenu.Item
         className='!p-0'
         clickable={false}

@@ -1,4 +1,5 @@
 import { IconGithub } from '@/assets/Icons'
+import { AddWindowsDropdownMenu } from '@/components/feature'
 import { type BaseComponentType } from '@/models'
 
 export const MainLayout: BaseComponentType = ({ children }) => {
@@ -20,6 +21,7 @@ export const MainLayout: BaseComponentType = ({ children }) => {
           </a>
         </div>
       </div>
+      <AddWindowsDropdownMenu />
       <main className='h-full text-sm'>{children}</main>
     </div>
   )

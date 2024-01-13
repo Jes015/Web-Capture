@@ -1,19 +1,20 @@
-import { IconClose, IconVideoCam } from '@/assets/Icons'
+import { IconVideoCam } from '@/assets/Icons'
 import { Button, Window } from '@/components/ui'
-import { type WatchRecordedWindowData } from '@/models'
+import { type WatchRecordingWindowData } from '@/models'
 import { useWindowSystemStore } from '@/services/store/zustand'
+import { Cross1Icon } from '@radix-ui/react-icons'
 import { useEffect, useRef } from 'react'
 
-interface WatchRecordedVideoWindowProps {
-  windowData: WatchRecordedWindowData
+interface WatchRecordingWindowProps {
+  windowData: WatchRecordingWindowData
 }
 
-export const WatchRecordedVideoWindow: React.FC<WatchRecordedVideoWindowProps> = ({ windowData }) => {
+export const WatchRecordingWindow: React.FC<WatchRecordingWindowProps> = ({ windowData }) => {
   const videoElementRef = useRef<HTMLVideoElement>(null)
   const { removeWindow } = useWindowSystemStore(state => ({ removeWindow: state.removeWindow }))
 
   useEffect(() => {
-    if (videoElementRef.current == null) return
+    if (videoElementRef.current == null || windowData.videoAndAudioBlob == null) return
     const videoURL = URL.createObjectURL(windowData.videoAndAudioBlob)
 
     videoElementRef.current.src = videoURL
@@ -30,14 +31,14 @@ export const WatchRecordedVideoWindow: React.FC<WatchRecordedVideoWindowProps> =
 
   return (
     <Window
-      title='Watch Recorded'
+      title='Watch Recording'
       className='overflow-hidden'
       icon={<IconVideoCam className="text-red-400 text-base" />}
       rightNode={
         <Button
           onClick={handleOnClickForCloseWindow}
         >
-          <IconClose />
+          <Cross1Icon />
         </Button>
       }
       rndconfig={{
@@ -53,12 +54,19 @@ export const WatchRecordedVideoWindow: React.FC<WatchRecordedVideoWindowProps> =
         lockAspectRatio: true
       }}
     >
-      <video
-        ref={videoElementRef}
-        className='h-full w-full'
-        controls
-      ></video>
-
+      {
+        windowData.videoAndAudioBlob == null && <h1>No source found. This window will be displayed by the recording window when the recording ends.</h1>
+      }
+      {
+        windowData.videoAndAudioBlob != null &&
+        (
+          <video
+            ref={videoElementRef}
+            className='h-full w-full'
+            controls
+          ></video>
+        )
+      }
     </Window>
   )
 }
