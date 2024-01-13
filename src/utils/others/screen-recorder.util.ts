@@ -8,9 +8,7 @@ let defaultValues: DisplayMediaStreamOptions = {
     displaySurface: 'browser'
   },
   audio: {
-    noiseSuppression: true,
-    sampleRate: 44000,
-    echoCancellation: true
+    sampleRate: 44000
   }
 }
 

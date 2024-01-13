@@ -1,13 +1,17 @@
+import { CWindowType } from '@/models'
+import { useWindowSystemStore } from '@/services/store/zustand'
 import { CustomMediaRecorder } from '@/utils/others'
 import { useEffect, useRef, useState } from 'react'
 import { type RecordingStatus } from '../models/recorder.model'
+import { useRecorderWindowContext } from '../services/context'
 
 export const useRecorder = () => {
   const [recordingStatus, setRecordingStatus] = useState<RecordingStatus>('off')
   const mediaRecorder = useRef<CustomMediaRecorder>()
   const [error, setError] = useState<string>()
   const videoSourceRef = useRef<HTMLVideoElement>()
-  const videoWatchRecordedSourceRef = useRef<HTMLVideoElement>()
+  const [addWindow] = useWindowSystemStore((state) => [state.addWindow])
+  const { getWindowData } = useRecorderWindowContext()
 
   useEffect(() => {
     mediaRecorder.current = new CustomMediaRecorder()
@@ -38,6 +42,9 @@ export const useRecorder = () => {
       void mediaRecorder.current.stopStreaming()
       void mediaRecorder.current.stopRecording()
 
+      const streamBlob = await getVideoAndAudioBlob()
+      // Opens a new window to watch the video recorded
+      addWindow({ name: `${getWindowData()?.name}-recorded`, type: CWindowType.watchRecord, videoAndAudioBlob: streamBlob, id: crypto.randomUUID() })
 
       if (videoSourceRef.current != null) {
         videoSourceRef.current.srcObject = null
@@ -47,12 +54,10 @@ export const useRecorder = () => {
     setRecordingStatus(newStatus)
   }
 
-  const setVideoAndAudioBlob = async () => {
+  const getVideoAndAudioBlob = async () => {
     const videoBlob = await mediaRecorder.current?.getVideoAndAudioBlob()
-    if (videoWatchRecordedSourceRef.current != null && videoBlob != null) {
-      videoWatchRecordedSourceRef.current.src = URL.createObjectURL(videoBlob)
-    }
+    return videoBlob
   }
 
-  return { toggleRecordingStatus, recordingStatus, error, videoSourceRef, setVideoAndAudioBlob, videoWatchRecordedSourceRef }
+  return { toggleRecordingStatus, recordingStatus, error, videoSourceRef }
 }
