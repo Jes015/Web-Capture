@@ -1,17 +1,17 @@
 import { IconRecord } from '@/assets/Icons'
 import { Window } from '@/components/ui'
 
-import { type WindowData } from '@/models'
+import { type RecordWindowData } from '@/models'
 import { RecordContent, RecordWindowDropdownMenu } from './components'
 import { RecorderProvider, RecorderWindowProvider } from './services/context/'
 
 interface RecordWindowProps {
-  windowData: WindowData
+  windowData: RecordWindowData
 }
 
 export const RecordWindow: React.FC<RecordWindowProps> = ({ windowData }) => {
   return (
-        <RecorderWindowProvider>
+        <RecorderWindowProvider {...{ windowData }}>
             <RecorderProvider>
                 <Window
                     title="Record Window"

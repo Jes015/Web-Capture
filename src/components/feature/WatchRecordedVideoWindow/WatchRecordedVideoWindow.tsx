@@ -1,17 +1,31 @@
 import { IconClose, IconVideoCam } from '@/assets/Icons'
 import { Button, Window } from '@/components/ui'
-import { type WindowData } from '@/models'
+import { type WatchRecordedWindowData } from '@/models'
 import { useWindowSystemStore } from '@/services/store/zustand'
+import { useEffect, useRef } from 'react'
 
 interface WatchRecordedVideoWindowProps {
-  windowData: WindowData
+  windowData: WatchRecordedWindowData
 }
 
 export const WatchRecordedVideoWindow: React.FC<WatchRecordedVideoWindowProps> = ({ windowData }) => {
+  const videoElementRef = useRef<HTMLVideoElement>(null)
   const { removeWindow } = useWindowSystemStore(state => ({ removeWindow: state.removeWindow }))
 
+  useEffect(() => {
+    if (videoElementRef.current == null) return
+    const videoURL = URL.createObjectURL(windowData.videoAndAudioBlob)
+
+    videoElementRef.current.src = videoURL
+
+    return () => {
+      URL.revokeObjectURL(videoURL)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   const handleOnClickForCloseWindow = () => {
-    removeWindow(windowData.name)
+    removeWindow(windowData.id)
   }
 
   return (
@@ -27,7 +41,11 @@ export const WatchRecordedVideoWindow: React.FC<WatchRecordedVideoWindowProps> =
         </Button>
       }
     >
-      <video className='h-full w-full' controls></video>
+      <video
+        ref={videoElementRef}
+        className='h-full w-full'
+        controls
+      ></video>
 
     </Window>
   )

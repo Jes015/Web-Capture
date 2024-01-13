@@ -6,17 +6,13 @@ interface RecorderContext {
   recordingStatus: RecordingStatus
   error: string | undefined
   videoSourceRef: React.MutableRefObject<HTMLVideoElement | undefined> | undefined
-  videoWatchRecordedSourceRef: React.MutableRefObject<HTMLVideoElement | undefined> | undefined
-  setVideoAndAudioBlob: () => Promise<Blob | undefined>
 }
 
 const defaultRecorderContext: RecorderContext = {
   toggleRecordingStatus: async () => {},
   recordingStatus: 'off',
   error: undefined,
-  videoSourceRef: undefined,
-  videoWatchRecordedSourceRef: undefined,
-  setVideoAndAudioBlob: async () => { return undefined }
+  videoSourceRef: undefined
 }
 
 export const recorderContext = createContext<RecorderContext>(defaultRecorderContext)

@@ -1,7 +1,7 @@
 import { RecordWindow, WatchRecordedVideoWindow } from '@/components/feature'
 import { MainLayout } from '@/layouts'
 import { Button } from './components/ui'
-import { CWindowType } from './models'
+import { CWindowType, type RecordWindowData, type WatchRecordedWindowData } from './models'
 import { useWindowSystemStore } from './services/store/zustand'
 
 function App () {
@@ -40,8 +40,8 @@ function App () {
         </div>
         {
           windows.map((windowData) => {
-            if (windowData.type === CWindowType.record) return <RecordWindow windowData={windowData} key={windowData.id} />
-            else if (windowData.type === CWindowType.watchRecord) return <WatchRecordedVideoWindow windowData={windowData} key={windowData.id} />
+            if (windowData.type === CWindowType.record) return <RecordWindow windowData={windowData as RecordWindowData} key={windowData.id} />
+            else if (windowData.type === CWindowType.watchRecord) return <WatchRecordedVideoWindow windowData={windowData as WatchRecordedWindowData} key={windowData.id} />
             return null
           })
         }
