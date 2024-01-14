@@ -4,16 +4,13 @@ import { CWindowType, type RecordWindowData, type WatchRecordingWindowData } fro
 import { useWindowSystemStore } from './services/store/zustand'
 
 function App () {
-  const { windows, error } = useWindowSystemStore((state) => ({ windows: state.windows, addWindow: state.addWindow, error: state.error }))
+  const { windows } = useWindowSystemStore((state) => ({ windows: state.windows, addWindow: state.addWindow }))
 
   return (
     <MainLayout>
       <div
         className='h-full flex flex-col justify-center items-center'
       >
-        <div className='text-red-500'>
-          {error != null && error}
-        </div>
         {
           windows.map((windowData) => {
             if (windowData.type === CWindowType.record) return <RecordingWindow windowData={windowData as RecordWindowData} key={windowData.id} />

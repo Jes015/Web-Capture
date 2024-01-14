@@ -1,6 +1,7 @@
 import { IconGithub } from '@/assets/Icons'
 import { AddWindowsDropdownMenu } from '@/components/feature'
 import { type BaseComponentType } from '@/models'
+import { Toaster } from 'sonner'
 
 export const MainLayout: BaseComponentType = ({ children }) => {
   return (
@@ -23,6 +24,7 @@ export const MainLayout: BaseComponentType = ({ children }) => {
       </div>
       <AddWindowsDropdownMenu />
       <main className='h-full text-sm'>{children}</main>
+      <Toaster richColors />
     </div>
   )
 }
