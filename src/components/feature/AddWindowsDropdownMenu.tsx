@@ -16,10 +16,11 @@ export const AddWindowsDropdownMenu = () => {
   return (
         <div
             className='fixed top-4 right-4'
+            id='addWindows'
         >
             <DropdownMenu
                 triggerContent={
-                    <span className='bg-white size-6 rounded text-sm text-zinc-950'>Windows</span>
+                    <span className='size-6 rounded text-sm'>Windows</span>
                 }
             >
                 <DropdownMenu.Item
