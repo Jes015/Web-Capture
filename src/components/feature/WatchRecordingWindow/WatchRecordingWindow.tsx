@@ -3,30 +3,22 @@ import { Button, Window } from '@/components/ui'
 import { type WatchRecordingWindowData } from '@/models'
 import { useWindowSystemStore } from '@/services/store/zustand'
 import { Cross1Icon } from '@radix-ui/react-icons'
-import { useEffect, useRef } from 'react'
+import { useWatchRecording } from './hooks'
 
 interface WatchRecordingWindowProps {
   windowData: WatchRecordingWindowData
 }
 
 export const WatchRecordingWindow: React.FC<WatchRecordingWindowProps> = ({ windowData }) => {
-  const videoElementRef = useRef<HTMLVideoElement>(null)
   const { removeWindow } = useWindowSystemStore(state => ({ removeWindow: state.removeWindow }))
-
-  useEffect(() => {
-    if (videoElementRef.current == null || windowData.videoAndAudioBlob == null) return
-    const videoURL = URL.createObjectURL(windowData.videoAndAudioBlob)
-
-    videoElementRef.current.src = videoURL
-
-    return () => {
-      URL.revokeObjectURL(videoURL)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const { videoElementRef, downloadRecording } = useWatchRecording(windowData)
 
   const handleOnClickForCloseWindow = () => {
     removeWindow(windowData.id)
+  }
+
+  const handleOnClickForDownloadRecording = () => {
+    downloadRecording()
   }
 
   return (
@@ -35,11 +27,32 @@ export const WatchRecordingWindow: React.FC<WatchRecordingWindowProps> = ({ wind
       className='overflow-hidden'
       icon={<IconVideoCam className="text-red-400 text-base" />}
       rightNode={
-        <Button
-          onClick={handleOnClickForCloseWindow}
+        <div
+          className='flex items-center gap-1'
         >
-          <Cross1Icon />
-        </Button>
+          {
+            windowData.videoAndAudioBlob != null && (
+              <Button
+                size='sm'
+                className='text-xs gap-[0.3125rem] overflow-hidden'
+                onClick={handleOnClickForDownloadRecording}
+              >
+                <span className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-300 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-green-400"></span>
+                </span>
+                Download
+              </Button>
+            )
+          }
+          <Button
+            size='sm'
+            className='h-full'
+            onClick={handleOnClickForCloseWindow}
+          >
+            <Cross1Icon />
+          </Button>
+        </div>
       }
       rndconfig={{
         enableResizing: true,
@@ -55,7 +68,7 @@ export const WatchRecordingWindow: React.FC<WatchRecordingWindowProps> = ({ wind
       }}
     >
       {
-        windowData.videoAndAudioBlob == null && <h1>No source found. This window will be displayed by the recording window when the recording ends.</h1>
+        windowData.videoAndAudioBlob == null && <h1 className='p-3 pt-1'>No source found. This window will be displayed by the recording window when the recording ends.</h1>
       }
       {
         windowData.videoAndAudioBlob != null &&
