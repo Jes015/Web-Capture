@@ -81,4 +81,12 @@ export class CustomMediaRecorder {
       })
     })
   }
+
+  async onStopStreaming (callback: () => void) {
+    this.mediaStreamInstance?.getTracks()[0].addEventListener('ended', callback)
+  }
+
+  async removeOnStopStreaming (callback: () => void) {
+    this.mediaStreamInstance?.getTracks()[0].removeEventListener('ended', callback)
+  }
 }
