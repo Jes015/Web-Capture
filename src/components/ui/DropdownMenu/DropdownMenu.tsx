@@ -23,6 +23,9 @@ export const DropdownMenu = ({ children, triggerContent }: DropdownMenuProps) =>
                 <Content
                     align='end'
                     className='mt-[0.1rem]'
+                    style={{
+                      zIndex: 1000000000000
+                    }}
                 >
                     <Sheet
                         className='rounded-sm text-white text-xs'
