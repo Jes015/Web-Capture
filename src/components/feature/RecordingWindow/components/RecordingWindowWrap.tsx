@@ -25,7 +25,11 @@ export const RecordingWindowWrap: React.FC<RecordingWindowWrapProps> = ({ window
                     }
                 />
             }
-            rightNode={<RecordingWindowDropdownMenu />}
+            rightNode={
+                <RecordingWindowDropdownMenu
+                    {...{ windowData }}
+                />
+            }
             className='overflow-hidden'
             {...{ windowData }}
         >
