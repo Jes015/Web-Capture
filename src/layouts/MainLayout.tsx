@@ -1,6 +1,7 @@
 import { IconGithub } from '@/assets/Icons'
 import { AddWindowsDropdownMenu } from '@/components/feature'
 import { type BaseComponentType } from '@/models'
+import { Analytics } from '@vercel/analytics/react'
 import { Toaster } from 'sonner'
 
 export const MainLayout: BaseComponentType = ({ children }) => {
@@ -25,6 +26,7 @@ export const MainLayout: BaseComponentType = ({ children }) => {
       <AddWindowsDropdownMenu />
       <main className='h-full text-sm'>{children}</main>
       <Toaster richColors />
+      <Analytics />
     </div>
   )
 }
