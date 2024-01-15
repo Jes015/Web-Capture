@@ -26,7 +26,13 @@ export const useWindowSystemStore = create<WindowSystemState & WindowSystemActio
     set((state) => ({ windows: [...state.windows, newWindow] }))
   },
   removeWindow: (windowId) => {
-    set((state) => ({ windows: state.windows.filter((window) => window.id !== windowId) }))
+    const isAValidWindow = get().windows.some((window) => window.id === windowId)
+
+    if (isAValidWindow) {
+      set((state) => ({ windows: state.windows.filter((window) => window.id !== windowId) }))
+    } else {
+      get().setError('This windows is not inside the Window System')
+    }
   },
   setError: (message) => {
     toast.message(message, 'error')
