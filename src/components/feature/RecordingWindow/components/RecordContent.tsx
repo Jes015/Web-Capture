@@ -1,4 +1,4 @@
-import { RecordControls, RecordData, RecordVideo } from '.'
+import { RecordControls, RecordData, RecordVideo } from './'
 
 export const RecordContent = () => {
   return (
