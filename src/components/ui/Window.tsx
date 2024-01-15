@@ -1,14 +1,22 @@
 import { SectionLayout } from '@/layouts'
 import { type SectionLayoutHeaderPropsPartial } from '@/layouts/SectionLayout/components'
-import { type BaseComponentProps } from '@/models'
+import { type BaseComponentProps, type WindowData } from '@/models'
+import { useWindowSystemStore } from '@/services/store/zustand'
 import { Rnd, type Props as RndProps } from 'react-rnd'
 interface WindowProps extends BaseComponentProps, SectionLayoutHeaderPropsPartial {
   rndconfig?: RndProps
+  windowData: WindowData
 }
 
-export const Window: React.FC<WindowProps> = ({ children, className, icon, title, rightNode, rndconfig }) => {
+export const Window: React.FC<WindowProps> = ({ children, className, icon, title, rightNode, rndconfig, windowData }) => {
+  const { superposeAWindow } = useWindowSystemStore()
+
+  const handleOnClickForSuperposeWindow = () => {
+    superposeAWindow(windowData.id)
+  }
   return (
     <Rnd
+      onMouseDown={handleOnClickForSuperposeWindow}
       default={{
         x: 0,
         y: 0,
@@ -21,6 +29,9 @@ export const Window: React.FC<WindowProps> = ({ children, className, icon, title
       enableResizing={false}
       enableUserSelectHack
       {...rndconfig}
+      style={{
+        zIndex: windowData.zIndex
+      }}
     >
       <SectionLayout
         className={

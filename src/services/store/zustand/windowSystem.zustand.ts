@@ -11,6 +11,7 @@ interface WindowSystemActions {
   addWindow: (newWindow: WindowData | RecordWindowData | WatchRecordingWindowData) => void
   removeWindow: (windowId: UUID) => void
   setError: (message: string) => void
+  superposeAWindow: (windowId: UUID) => void
 }
 
 export const useWindowSystemStore = create<WindowSystemState & WindowSystemActions>((set, get) => ({
@@ -22,6 +23,8 @@ export const useWindowSystemStore = create<WindowSystemState & WindowSystemActio
       get().setError('Window id is already taken')
       return
     }
+
+    newWindow.zIndex = 0
 
     set((state) => ({ windows: [...state.windows, newWindow] }))
   },
@@ -36,5 +39,26 @@ export const useWindowSystemStore = create<WindowSystemState & WindowSystemActio
   },
   setError: (message) => {
     toast.message(message, 'error')
+  },
+  superposeAWindow: (windowId) => {
+    const windowIndex = get().windows.findIndex(window => window.id === windowId)
+    const windowUpdated = structuredClone(get().windows[windowIndex])
+
+    if (windowUpdated == null) return
+
+    let higherZIndex = 0
+
+    get().windows.forEach((window) => {
+      if (window.zIndex == null) return
+      if (window.zIndex > higherZIndex) {
+        higherZIndex = window.zIndex
+      }
+    })
+
+    higherZIndex = higherZIndex + 1
+
+    windowUpdated.zIndex = higherZIndex
+    const newWindowsArray = get().windows.with(windowIndex, windowUpdated)
+    set(() => ({ windows: newWindowsArray }))
   }
 }))

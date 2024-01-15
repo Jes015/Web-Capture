@@ -11,6 +11,7 @@ export interface WindowData {
   id: UUID
   name: string
   type: TWindowType
+  zIndex?: number
 }
 
 export interface WatchRecordingWindowData extends WindowData {
