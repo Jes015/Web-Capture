@@ -25,6 +25,7 @@ export const WatchRecordingWindow: React.FC<WatchRecordingWindowProps> = ({ wind
     <Window
       title='Watch Recording'
       className='overflow-hidden'
+      {...{ windowData }}
       icon={<IconVideoCam className="text-red-400 text-base" />}
       rightNode={
         <div
