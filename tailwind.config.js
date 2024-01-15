@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        'pulse-fast': 'pulse 900ms linear infinite;'
+      }
+    },
   },
   plugins: [],
 }
