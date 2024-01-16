@@ -1,7 +1,7 @@
 import { CWindowType } from '@/models'
 import { useWindowSystemStore } from '@/services/store/zustand'
 import { CustomMediaRecorder } from '@/utils/others'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { type RecordingStatus } from '../models/recorder.model'
 import { useRecorderWindowContext } from '../services/context'
 
@@ -15,7 +15,6 @@ export const useRecorder = () => {
 
   useEffect(() => {
     mediaRecorder.current = new CustomMediaRecorder()
-
     return () => {
       void mediaRecorder.current?.removeOnStopStreaming(cachedOnStopStreaming)
       mediaRecorder.current = undefined
@@ -23,10 +22,14 @@ export const useRecorder = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const cachedOnStopStreaming = () => {
-    void stopRecording()
-    setRecordingStatus('off')
-  }
+  const cachedOnStopStreaming = useCallback(
+    () => {
+      void stopRecording()
+      setRecordingStatus('off')
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    , []
+  )
 
   const toggleRecordingStatus = async (newStatus: RecordingStatus) => {
     if (mediaRecorder.current == null) {
