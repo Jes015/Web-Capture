@@ -1,4 +1,23 @@
+import { useStopwatch } from '@/hooks'
+import { formatTime } from '@/utils/others'
+import { useEffect } from 'react'
+import { useRecorderContext } from '../services/context'
+
 export const RecordData = () => {
+  const { startStopwatch, stopStopwatch, time } = useStopwatch()
+  const { recordingStatus } = useRecorderContext()
+
+  useEffect(() => {
+    if (recordingStatus === 'on') {
+      startStopwatch()
+    } else if (recordingStatus === 'off') {
+      stopStopwatch()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [recordingStatus])
+
+  const timeFormatted = formatTime(time)
+
   return (
         <div>
             <div
@@ -12,11 +31,20 @@ export const RecordData = () => {
                     >
                         Time
                     </span>
-                    <span
-                        className="text-3xl leading-7"
-                    >
-                        00:00
-                    </span>
+                    <div>
+                        <span
+                            className="text-3xl leading-7"
+                        >
+                            {timeFormatted?.hours}
+                            :
+                            {timeFormatted?.minutes}
+                        </span>
+                        <span
+                            className="text-sm"
+                        >
+                            :{timeFormatted?.seconds}
+                        </span>
+                    </div>
                 </div>
                 <div
                     className="flex flex-col items-end justify-center flex-grow"
