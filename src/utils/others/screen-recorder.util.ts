@@ -9,7 +9,10 @@ let defaultValues: DisplayMediaStreamOptions = {
   },
   audio: {
     sampleRate: 44000
-  }
+  },
+  // @ts-expect-error systemAudio and monitorTypeSurfaces are an experimental property
+  systemAudio: 'include',
+  monitorTypeSurfaces: 'include'
 }
 
 export class CustomMediaRecorder {
