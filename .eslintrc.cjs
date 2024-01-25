@@ -16,7 +16,8 @@ module.exports = {
       { allowConstantExport: true },
     ],
     '@typescript-eslint/explicit-function-return-type': 'off',
-    'no-multiple-empty-lines': 'off'
+    'no-multiple-empty-lines': 'off',
+    '@typescript-eslint/return-await': 'off'
   },
   ignorePatterns: ["vite.config.ts", "vite-env.d.ts"]
 }

@@ -1,9 +1,11 @@
-import { RecordingWindow, WatchRecordingWindow } from '@/components/feature'
 import { MainLayout } from '@/layouts'
 import { showDriver } from '@/utils/others'
-import { useEffect } from 'react'
+import { lazy, useEffect } from 'react'
 import { CWindowType, type RecordWindowData, type WatchRecordingWindowData } from './models'
 import { useWindowSystemStore } from './services/store/zustand'
+
+const RecordingWindow = lazy(async () => import('@/components/feature/RecordingWindow/RecordingWindow'))
+const WatchRecordingWindow = lazy(async () => import('@/components/feature/WatchRecordingWindow/WatchRecordingWindow'))
 
 function App () {
   const { windows } = useWindowSystemStore((state) => ({ windows: state.windows, addWindow: state.addWindow }))

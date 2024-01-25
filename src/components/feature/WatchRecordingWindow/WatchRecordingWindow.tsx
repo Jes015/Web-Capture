@@ -85,3 +85,5 @@ export const WatchRecordingWindow: React.FC<WatchRecordingWindowProps> = ({ wind
     </Window>
   )
 }
+
+export default WatchRecordingWindow
