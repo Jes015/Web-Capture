@@ -1,7 +1,7 @@
 import { type BaseComponentProps } from '@/models'
-import { InputElementLabel } from './components/'
+import { TextFieldLabel } from './components'
 
-export const InputElement = ({ children, className }: BaseComponentProps) => {
+export const TextField = ({ children, className }: BaseComponentProps) => {
   return (
         <label className={
             [
@@ -14,4 +14,4 @@ export const InputElement = ({ children, className }: BaseComponentProps) => {
   )
 }
 
-InputElement.Label = InputElementLabel
+TextField.Label = TextFieldLabel
