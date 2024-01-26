@@ -1,4 +1,4 @@
-import { Select, TextField, Window } from '@/components/ui'
+import { Button, Select, TextField, Window } from '@/components/ui'
 import { Input } from '@/components/ui/Input'
 import { type DownloadRecordingWindowData } from '@/models'
 import { DownloadIcon } from '@radix-ui/react-icons'
@@ -14,58 +14,62 @@ export const DownloadRecordingWindow: React.FC<DownloadRecordingWindowProps> = (
       {...{ windowData }}
       icon={<DownloadIcon className="text-green-400 text-base" />}
       rndconfig={{
-        enableResizing: true,
-        default: {
-          x: 0,
-          y: 0,
-          width: 500,
-          height: 320
-        },
-        minWidth: 251,
-        maxWidth: 500,
-        maxHeight: 400,
-        lockAspectRatio: true
+        minWidth: 290,
+        minHeight: 129
       }}
     >
-      <TextField
-        className='flex flex-col !items-start !gap-0'
+      <div
+        className='px-2 flex flex-col gap-2 mt-1'
       >
-        <TextField.Label
-          className='text-xs'
+        <div
+          className='flex gap-2'
         >
-          File name
-        </TextField.Label>
-        <Input placeholder='Hola' />
-      </TextField>
+          <TextField
+            className='flex flex-col !items-start !gap-0 flex-grow'
+          >
+            <TextField.Label
+              className='text-xs'
+            >
+              File name
+            </TextField.Label>
+            <Input className='w-full' placeholder='Hola' />
+          </TextField>
 
-      <TextField
-        className='flex flex-col !items-start !gap-0'
-      >
-        <TextField.Label
-          className='text-xs'
-        >
-          Format
-        </TextField.Label>
-        <Select
-          defaultValue='banana'
-          triggerContent={<Select.TriggerContent placeholder='Select a format' />}
-        >
-          <Select.Group>
-            <Select.GroupLabel>
-              Video
-            </Select.GroupLabel>
-            <Select.Item value="apple">WEBM</Select.Item>
-            <Select.Item value="banana">MP4</Select.Item>
-          </Select.Group>
+          <TextField
+            className='flex flex-col !items-start !gap-0'
+          >
+            <TextField.Label
+              className='text-xs'
+            >
+              Format
+            </TextField.Label>
+            <Select
+              defaultValue='mp4'
+              triggerContent={<Select.TriggerContent />}
+            >
+              <Select.Group>
+                <Select.GroupLabel>
+                  Video
+                </Select.GroupLabel>
+                <Select.Item value="webm">WEBM</Select.Item>
+                <Select.Item value="mp4">MP4</Select.Item>
+              </Select.Group>
 
-          <Select.Group>
-            <Select.GroupLabel className="px-[25px] text-xs leading-[25px] text-mauve11">
-              Audio
-            </Select.GroupLabel>
-            <Select.Item value="aubergine">MP3</Select.Item>
-          </Select.Group>
-        </Select>
-      </TextField>
+              <Select.Group>
+                <Select.GroupLabel className="px-[25px] text-xs leading-[25px] text-mauve11">
+                  Audio
+                </Select.GroupLabel>
+                <Select.Item value="mp3">MP3</Select.Item>
+              </Select.Group>
+            </Select>
+          </TextField>
+        </div>
+        <Button
+          className='justify-stretch'
+        >
+          Download
+        </Button>
+      </div>
     </Window>
   )
 }
