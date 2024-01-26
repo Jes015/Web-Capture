@@ -4,6 +4,7 @@ import { type SectionLayoutHeaderPropsPartial } from '@/layouts/SectionLayout/co
 import { type BaseComponentProps, type WindowData } from '@/models'
 import { useWindowSystemStore } from '@/services/store/zustand'
 import { Cross1Icon } from '@radix-ui/react-icons'
+import { useEffect } from 'react'
 import { Rnd, type Props as RndProps } from 'react-rnd'
 interface WindowProps extends BaseComponentProps, SectionLayoutHeaderPropsPartial {
   rndconfig?: RndProps
@@ -12,6 +13,11 @@ interface WindowProps extends BaseComponentProps, SectionLayoutHeaderPropsPartia
 
 export const Window: React.FC<WindowProps> = ({ children, className, icon, title, rightNode, rndconfig, windowData }) => {
   const [superposeAWindow, removeWindow] = useWindowSystemStore(state => [state.superposeAWindow, state.removeWindow])
+
+  useEffect(() => {
+    handleOnClickToSuperposeWindow()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const handleOnClickToSuperposeWindow = () => {
     superposeAWindow(windowData.id)
