@@ -5,7 +5,7 @@ export const TextField = ({ children, className }: BaseComponentProps) => {
   return (
         <label className={
             [
-              'flex items-center gap-2',
+              'inline-flex items-center gap-2',
               className
             ].join(' ')
         }>
