@@ -11,9 +11,10 @@ export const DropdownMenu = ({ children, triggerContent }: DropdownMenuProps) =>
   return (
         <Root>
             <Trigger
+                asChild
                 className='outline-none'
             >
-                <Button // If you use base components radix UI will not give you problems ;)
+                <Button
                     aria-label="Customize options"
                 >
                     {triggerContent}

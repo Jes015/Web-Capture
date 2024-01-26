@@ -26,7 +26,11 @@ export const DownloadRecordingWindow: React.FC<DownloadRecordingWindowProps> = (
               lockAspectRatio: true
             }}
         >
-            asdfasfd
+            <div>
+              asdfasfsd
+            </div>
         </Window>
   )
 }
+
+export default DownloadRecordingWindow

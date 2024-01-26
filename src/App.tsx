@@ -6,6 +6,7 @@ import { useWindowSystemStore } from './services/store/zustand'
 
 const RecordingWindow = lazy(async () => import('@/components/feature/RecordingWindow/RecordingWindow'))
 const WatchRecordingWindow = lazy(async () => import('@/components/feature/WatchRecordingWindow/WatchRecordingWindow'))
+const DownloadRecordingWindow = lazy(async () => import('@/components/feature/DownloadRecordingWindow/DownloadRecordingWindow'))
 
 function App () {
   const { windows } = useWindowSystemStore((state) => ({ windows: state.windows, addWindow: state.addWindow }))
@@ -27,6 +28,7 @@ function App () {
               return null
             })
           }
+          <DownloadRecordingWindow windowData={{ id: crypto.randomUUID(), name: 'holaaa', type: CWindowType.downloadRecord, videoAndAudioBlob: null }} />
         </Suspense>
       </div>
     </MainLayout>
