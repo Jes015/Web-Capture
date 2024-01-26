@@ -1,4 +1,4 @@
-import { Sheet } from '@/components/ui'
+import { Button, Sheet } from '@/components/ui'
 import { type BaseComponentProps } from '@/models'
 import { Content, Portal, Root, Trigger } from '@radix-ui/react-dropdown-menu'
 import { Item } from './components'
@@ -10,13 +10,15 @@ interface DropdownMenuProps extends BaseComponentProps {
 export const DropdownMenu = ({ children, triggerContent }: DropdownMenuProps) => {
   return (
         <Root>
-            <Trigger asChild className='outline-none'>
-                <button // If you use base components radix UI will not give you problems ;)
-                    className='border border-neutral-800 rounded-sm p-[0.20rem] hover:bg-neutral-800 hover:border-neutral-700 hover:drop-shadow-sm [transition-duration:0.1s]'
-                    aria-label="Customise options"
+            <Trigger
+                asChild
+                className='outline-none'
+            >
+                <Button
+                    aria-label="Customize options"
                 >
                     {triggerContent}
-                </button>
+                </Button>
             </Trigger>
 
             <Portal>

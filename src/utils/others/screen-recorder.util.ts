@@ -3,7 +3,7 @@ import { LoggerService } from '@/services/logger.service'
 let defaultValues: DisplayMediaStreamOptions = {
   video: {
     frameRate: {
-      ideal: 30
+      ideal: 60
     },
     displaySurface: 'browser'
   },

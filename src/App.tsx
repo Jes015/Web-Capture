@@ -1,9 +1,12 @@
-import { RecordingWindow, WatchRecordingWindow } from '@/components/feature'
 import { MainLayout } from '@/layouts'
 import { showDriver } from '@/utils/others'
-import { useEffect } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
 import { CWindowType, type RecordWindowData, type WatchRecordingWindowData } from './models'
 import { useWindowSystemStore } from './services/store/zustand'
+
+const RecordingWindow = lazy(async () => import('@/components/feature/RecordingWindow/RecordingWindow'))
+const WatchRecordingWindow = lazy(async () => import('@/components/feature/WatchRecordingWindow/WatchRecordingWindow'))
+const DownloadRecordingWindow = lazy(async () => import('@/components/feature/DownloadRecordingWindow/DownloadRecordingWindow'))
 
 function App () {
   const { windows } = useWindowSystemStore((state) => ({ windows: state.windows, addWindow: state.addWindow }))
@@ -17,13 +20,16 @@ function App () {
       <div
         className='h-full flex flex-col justify-center items-center'
       >
-        {
-          windows.map((windowData) => {
-            if (windowData.type === CWindowType.record) return <RecordingWindow windowData={windowData as RecordWindowData} key={windowData.id} />
-            else if (windowData.type === CWindowType.watchRecord) return <WatchRecordingWindow windowData={windowData as WatchRecordingWindowData} key={windowData.id} />
-            return null
-          })
-        }
+        <Suspense>
+          {
+            windows.map((windowData) => {
+              if (windowData.type === CWindowType.record) return <RecordingWindow windowData={windowData as RecordWindowData} key={windowData.id} />
+              else if (windowData.type === CWindowType.watchRecord) return <WatchRecordingWindow windowData={windowData as WatchRecordingWindowData} key={windowData.id} />
+              return null
+            })
+          }
+          <DownloadRecordingWindow windowData={{ id: crypto.randomUUID(), name: 'holaaa', type: CWindowType.downloadRecord, videoAndAudioBlob: null }} />
+        </Suspense>
       </div>
     </MainLayout>
   )

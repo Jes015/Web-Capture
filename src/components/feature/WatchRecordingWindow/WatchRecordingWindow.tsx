@@ -1,8 +1,6 @@
 import { IconVideoCam } from '@/assets/Icons'
 import { Button, Window } from '@/components/ui'
 import { type WatchRecordingWindowData } from '@/models'
-import { useWindowSystemStore } from '@/services/store/zustand'
-import { Cross1Icon } from '@radix-ui/react-icons'
 import { useWatchRecording } from './hooks'
 
 interface WatchRecordingWindowProps {
@@ -10,12 +8,7 @@ interface WatchRecordingWindowProps {
 }
 
 export const WatchRecordingWindow: React.FC<WatchRecordingWindowProps> = ({ windowData }) => {
-  const { removeWindow } = useWindowSystemStore(state => ({ removeWindow: state.removeWindow }))
   const { videoElementRef, downloadRecording } = useWatchRecording(windowData)
-
-  const handleOnClickForCloseWindow = () => {
-    removeWindow(windowData.id)
-  }
 
   const handleOnClickForDownloadRecording = () => {
     downloadRecording()
@@ -24,7 +17,6 @@ export const WatchRecordingWindow: React.FC<WatchRecordingWindowProps> = ({ wind
   return (
     <Window
       title='Watch Recording'
-      className='overflow-hidden'
       {...{ windowData }}
       icon={<IconVideoCam className="text-red-400 text-base" />}
       rightNode={
@@ -46,13 +38,6 @@ export const WatchRecordingWindow: React.FC<WatchRecordingWindowProps> = ({ wind
               </Button>
             )
           }
-          <Button
-            size='sm'
-            className='h-full'
-            onClick={handleOnClickForCloseWindow}
-          >
-            <Cross1Icon />
-          </Button>
         </div>
       }
       rndconfig={{
@@ -85,3 +70,5 @@ export const WatchRecordingWindow: React.FC<WatchRecordingWindowProps> = ({ wind
     </Window>
   )
 }
+
+export default WatchRecordingWindow

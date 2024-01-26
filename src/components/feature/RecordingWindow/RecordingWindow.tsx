@@ -19,4 +19,4 @@ export const RecordingWindow: React.FC<RecordWindowProps> = ({ windowData }) => 
   )
 }
 
-
+export default RecordingWindow
