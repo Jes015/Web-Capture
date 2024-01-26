@@ -1,4 +1,4 @@
-import { DropdownMenu, InputElement, SwitchInput } from '@/components/ui'
+import { DropdownMenu, SwitchInput, TextField } from '@/components/ui'
 import { type BaseComponentType } from '@/models'
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 import { useRecorderWindowContext } from '../services/context'
@@ -16,17 +16,17 @@ export const RecordingWindowDropdownMenu: BaseComponentType = () => {
         className='!p-0'
         clickable={false}
       >
-        <InputElement
+        <TextField
           className='p-2'
         >
-          <InputElement.Label>
+          <TextField.Label>
             Display Video
-          </InputElement.Label>
+          </TextField.Label>
           <SwitchInput
             onChange={handleOnClickForDisplayVideo}
             defaultChecked={isDisplayingVideo}
           />
-        </InputElement>
+        </TextField>
       </DropdownMenu.Item>
     </DropdownMenu>
   )

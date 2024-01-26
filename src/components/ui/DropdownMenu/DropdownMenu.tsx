@@ -4,7 +4,7 @@ import { Content, Portal, Root, Trigger } from '@radix-ui/react-dropdown-menu'
 import { Item } from './components'
 
 interface DropdownMenuProps extends BaseComponentProps {
-  triggerContent?: React.ReactNode
+  triggerContent: React.ReactNode
 }
 
 export const DropdownMenu = ({ children, triggerContent }: DropdownMenuProps) => {
