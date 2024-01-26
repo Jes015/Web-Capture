@@ -1,7 +1,9 @@
+import { Button } from '@/components/ui'
 import { SectionLayout } from '@/layouts'
 import { type SectionLayoutHeaderPropsPartial } from '@/layouts/SectionLayout/components'
 import { type BaseComponentProps, type WindowData } from '@/models'
 import { useWindowSystemStore } from '@/services/store/zustand'
+import { Cross1Icon } from '@radix-ui/react-icons'
 import { Rnd, type Props as RndProps } from 'react-rnd'
 interface WindowProps extends BaseComponentProps, SectionLayoutHeaderPropsPartial {
   rndconfig?: RndProps
@@ -9,20 +11,19 @@ interface WindowProps extends BaseComponentProps, SectionLayoutHeaderPropsPartia
 }
 
 export const Window: React.FC<WindowProps> = ({ children, className, icon, title, rightNode, rndconfig, windowData }) => {
-  const { superposeAWindow } = useWindowSystemStore()
+  const [superposeAWindow, removeWindow] = useWindowSystemStore(state => [state.superposeAWindow, state.removeWindow])
 
-  const handleOnClickForSuperposeWindow = () => {
+  const handleOnClickToSuperposeWindow = () => {
     superposeAWindow(windowData.id)
   }
+
+  const handleOnClickToCloseWindow = () => {
+    removeWindow(windowData.id)
+  }
+
   return (
     <Rnd
-      onMouseDown={handleOnClickForSuperposeWindow}
-      default={{
-        x: 0,
-        y: 0,
-        width: 200,
-        height: 120
-      }}
+      onMouseDown={handleOnClickToSuperposeWindow}
       maxWidth={200}
       minHeight={120}
       bounds='window'
@@ -36,14 +37,28 @@ export const Window: React.FC<WindowProps> = ({ children, className, icon, title
       <SectionLayout
         className={
           [
-            'flex flex-col absolute w-full h-full',
+            'flex flex-col absolute w-full h-full overflow-hidden',
             className
           ].join(' ')
         }
       >
         <SectionLayout.Header
           className='select-none w-full'
-          {...{ icon, title, rightNode }}
+          rightNode={
+            <div
+              className='flex items-center gap-1'
+            >
+              {rightNode}
+              <Button
+                size='sm'
+                className='h-full'
+                onClick={handleOnClickToCloseWindow}
+              >
+                <Cross1Icon />
+              </Button>
+            </div>
+          }
+          {...{ icon, title }}
         />
         <SectionLayout.Content className='flex-grow w-full h-full'>
           {children}

@@ -1,22 +1,13 @@
 import { DropdownMenu, InputElement, SwitchInput } from '@/components/ui'
-import { type WindowData } from '@/models'
-import { useWindowSystemStore } from '@/services/store/zustand'
+import { type BaseComponentType } from '@/models'
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 import { useRecorderWindowContext } from '../services/context'
 
-interface RecordingWindowDropdownMenuProps {
-  windowData: WindowData
-}
-export const RecordingWindowDropdownMenu: React.FC<RecordingWindowDropdownMenuProps> = ({ windowData }) => {
+export const RecordingWindowDropdownMenu: BaseComponentType = () => {
   const { isDisplayingVideo, toggleVideoVisibility } = useRecorderWindowContext()
-  const { removeWindow } = useWindowSystemStore()
 
   const handleOnClickForDisplayVideo = (newValue: boolean) => {
     toggleVideoVisibility(newValue)
-  }
-
-  const handleOnClickForCloseWindow = () => {
-    removeWindow(windowData.id)
   }
 
   return (
@@ -37,11 +28,6 @@ export const RecordingWindowDropdownMenu: React.FC<RecordingWindowDropdownMenuPr
           />
         </InputElement>
       </DropdownMenu.Item>
-      <DropdownMenu.Item
-        onClick={handleOnClickForCloseWindow}
-      >
-        Close
-        </DropdownMenu.Item>
     </DropdownMenu>
   )
 }
