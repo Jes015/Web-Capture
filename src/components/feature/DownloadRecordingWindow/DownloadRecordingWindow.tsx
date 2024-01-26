@@ -1,4 +1,5 @@
 import { Select, TextField, Window } from '@/components/ui'
+import { Input } from '@/components/ui/Input'
 import { type DownloadRecordingWindowData } from '@/models'
 import { DownloadIcon } from '@radix-ui/react-icons'
 
@@ -26,6 +27,17 @@ export const DownloadRecordingWindow: React.FC<DownloadRecordingWindowProps> = (
         lockAspectRatio: true
       }}
     >
+      <TextField
+        className='flex flex-col !items-start !gap-0'
+      >
+        <TextField.Label
+          className='text-xs'
+        >
+          File name
+        </TextField.Label>
+        <Input placeholder='Hola' />
+      </TextField>
+
       <TextField
         className='flex flex-col !items-start !gap-0'
       >

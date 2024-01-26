@@ -10,7 +10,7 @@ export const Select = ({ children, triggerContent, ...props }: CustomSelectProps
   return (
         <SelectRoot {...props}>
             <SelectTrigger
-                className="flex items-center gap-2 text-xs border border-neutral-800 bg-neutral-900 rounded-sm hover:bg-neutral-800 hover:border-neutral-700 hover:drop-shadow-sm [transition-duration:0.1s] relative p-2 outline-none"
+                className="flex items-center gap-2 border border-neutral-800 bg-neutral-900 rounded-sm hover:bg-neutral-800 hover:border-neutral-700 hover:drop-shadow-sm [transition-duration:0.1s] relative p-2 py-1 outline-none"
             >
                 {triggerContent}
             </SelectTrigger>
