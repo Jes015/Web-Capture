@@ -1,11 +1,10 @@
-import { type WatchRecordingWindowData } from '@/models'
+import { CWindowType, type WatchRecordingWindowData } from '@/models'
 import { useWindowSystemStore } from '@/services/store/zustand'
-import { utilDownloadRecording } from '@/utils/others'
 import { useEffect, useRef } from 'react'
 
 export const useWatchRecording = (windowData: WatchRecordingWindowData) => {
   const videoElementRef = useRef<HTMLVideoElement>(null)
-  const { setError } = useWindowSystemStore()
+  const [setError, addWindow] = useWindowSystemStore(state => [state.setError, state.addWindow])
 
   useEffect(() => {
     if (videoElementRef.current == null || windowData.videoAndAudioBlob == null) return
@@ -24,7 +23,8 @@ export const useWatchRecording = (windowData: WatchRecordingWindowData) => {
       setError('No source found')
       return
     }
-    utilDownloadRecording({ blob: windowData.videoAndAudioBlob, title: 'hola' })
+
+    addWindow({ id: crypto.randomUUID(), name: `${windowData.name} Download`, type: CWindowType.downloadRecord, videoAndAudioBlob: windowData.videoAndAudioBlob })
   }
 
   return { videoElementRef, downloadRecording }

@@ -78,6 +78,9 @@ export const useRecorder = () => {
     void mediaRecorder.current.stopRecording()
 
     const streamBlob = await getVideoAndAudioBlob()
+
+    if (streamBlob == null) return
+
     // Opens a new window to watch the video recorded
     addWindow({ name: `${getWindowData()?.name}-recorded`, type: CWindowType.watchRecord, videoAndAudioBlob: streamBlob, id: crypto.randomUUID() })
 

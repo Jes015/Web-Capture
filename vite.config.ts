@@ -9,5 +9,8 @@ export default defineConfig({
     alias: {
       '@': resolve(__dirname, './src/')
     }
+  },
+  optimizeDeps: {
+    exclude: ['vite:worker', 'vite:worker-import-meta-url', 'worker', 'worker.js']
   }
 })

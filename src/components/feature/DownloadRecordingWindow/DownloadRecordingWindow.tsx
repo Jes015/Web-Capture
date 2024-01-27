@@ -2,12 +2,31 @@ import { Button, Select, TextField, Window } from '@/components/ui'
 import { Input } from '@/components/ui/Input'
 import { type DownloadRecordingWindowData } from '@/models'
 import { DownloadIcon } from '@radix-ui/react-icons'
+import { useDownloadRecording } from './hooks'
 
 interface DownloadRecordingWindowProps {
   windowData: DownloadRecordingWindowData
 }
 
 export const DownloadRecordingWindow: React.FC<DownloadRecordingWindowProps> = ({ windowData }) => {
+  const { downloadRecording, loading } = useDownloadRecording({ windowData })
+
+  const handleOnSubmitToDownload = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    const formData = e.currentTarget.elements
+
+    const fileNameInput = formData.namedItem('filename') as HTMLInputElement
+    const formatInput = formData.namedItem('format') as HTMLSelectElement
+
+    const fileName = fileNameInput.value ?? 'download'
+    const formatType = (formatInput.value as 'mp3' | 'webm' | 'mp4') ?? 'webm'
+
+    console.log({ fileName, formatType })
+
+    void downloadRecording(fileName, formatType)
+  }
+
   return (
     <Window
       title='Download Recording'
@@ -15,10 +34,12 @@ export const DownloadRecordingWindow: React.FC<DownloadRecordingWindowProps> = (
       icon={<DownloadIcon className="text-green-400 text-base" />}
       rndconfig={{
         minWidth: 290,
-        minHeight: 129
+        minHeight: 130
       }}
     >
-      <div
+      {loading && 'loading'}
+      <form
+        onSubmit={handleOnSubmitToDownload}
         className='px-2 flex flex-col gap-2 mt-1'
       >
         <div
@@ -32,7 +53,7 @@ export const DownloadRecordingWindow: React.FC<DownloadRecordingWindowProps> = (
             >
               File name
             </TextField.Label>
-            <Input className='w-full' placeholder='Hola' />
+            <Input name='filename' className='w-full' placeholder='Hola' />
           </TextField>
 
           <TextField
@@ -44,7 +65,8 @@ export const DownloadRecordingWindow: React.FC<DownloadRecordingWindowProps> = (
               Format
             </TextField.Label>
             <Select
-              defaultValue='mp4'
+              name='format'
+              defaultValue='webm'
               triggerContent={<Select.TriggerContent />}
             >
               <Select.Group>
@@ -69,7 +91,7 @@ export const DownloadRecordingWindow: React.FC<DownloadRecordingWindowProps> = (
         >
           Download
         </Button>
-      </div>
+      </form>
     </Window>
   )
 }

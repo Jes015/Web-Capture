@@ -1,4 +1,4 @@
-import { type RecordWindowData, type WatchRecordingWindowData, type WindowData, type WindowDataArray } from '@/models'
+import { type WindowDataArray, type WindowTypes } from '@/models'
 import { toast } from '@/utils/others'
 import { type UUID } from 'crypto'
 import { create } from 'zustand'
@@ -8,7 +8,7 @@ interface WindowSystemState {
 }
 
 interface WindowSystemActions {
-  addWindow: (newWindow: WindowData | RecordWindowData | WatchRecordingWindowData) => void
+  addWindow: (newWindow: WindowTypes) => void
   removeWindow: (windowId: UUID) => void
   setError: (message: string) => void
   superposeAWindow: (windowId: UUID) => void
