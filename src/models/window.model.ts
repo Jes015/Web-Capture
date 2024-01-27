@@ -29,4 +29,6 @@ export interface DownloadRecordingWindowData extends WindowData {
   type: 'Download Record'
 }
 
+export type WindowTypes = RecordWindowData | WatchRecordingWindowData | DownloadRecordingWindowData
+
 export type WindowDataArray = WindowData[]
