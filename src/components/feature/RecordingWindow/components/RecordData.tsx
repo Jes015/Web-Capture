@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useRecorderContext } from '../services/context'
 
 export const RecordData = () => {
-  const { startStopwatch, stopStopwatch, time } = useStopwatch()
+  const { startStopwatch, stopStopwatch, time, startTime, endTime } = useStopwatch()
   const { recordingStatus } = useRecorderContext()
 
   useEffect(() => {
@@ -49,34 +49,39 @@ export const RecordData = () => {
                 <div
                     className="flex flex-col items-end justify-center flex-grow"
                 >
+                    {typeof startTime?.minutes === 'number' && typeof startTime.hours === 'number' && (
                     <div
                         className="flex gap-1 text-xs"
                     >
-                        <span
-                            className="font-normal"
-                        >
-                            Started at
-                        </span>
-                        <span
-                            className="text-xs"
-                        >
-                            04:12
-                        </span>
+                          <span
+                              className="font-normal"
+                          >
+                              Started at
+                          </span>
+                          <span
+                              className="text-xs"
+                          >
+                              {`${startTime.hours}:${startTime.minutes}`}
+                          </span>
                     </div>
+                    )}
+
+                    {typeof endTime?.minutes === 'number' && typeof endTime.hours === 'number' && (
                     <div
                         className="flex gap-1 text-xs"
                     >
-                        <span
-                            className="font-normal"
-                        >
-                            Started at
-                        </span>
-                        <span
-                            className="text-xs"
-                        >
-                            04:12
-                        </span>
+                          <span
+                              className="font-normal"
+                          >
+                              Stoped at
+                          </span>
+                          <span
+                              className="text-xs"
+                          >
+                              {`${endTime.hours}:${endTime.minutes}`}
+                          </span>
                     </div>
+                    )}
                 </div>
             </div>
         </div>
