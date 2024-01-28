@@ -47,41 +47,36 @@ export const RecordData = () => {
                     </div>
                 </div>
                 <div
-                    className="flex flex-col items-end justify-center flex-grow"
+                    className='flex flex-col items-end justify-center flex-grow'
                 >
-                    {typeof startTime?.minutes === 'number' && typeof startTime.hours === 'number' && (
+                        <div
+                            className="flex gap-1 text-xs"
+                        >
+                            <span
+                                className="font-normal"
+                            >
+                                Started at
+                            </span>
+                            <span
+                                className="text-xs"
+                            >
+                                {`${startTime?.hours ?? '- -'}:${startTime?.minutes ?? '- -'}`}
+                            </span>
+                        </div>
                     <div
                         className="flex gap-1 text-xs"
                     >
-                          <span
-                              className="font-normal"
-                          >
-                              Started at
-                          </span>
-                          <span
-                              className="text-xs"
-                          >
-                              {`${startTime.hours}:${startTime.minutes}`}
-                          </span>
+                        <span
+                            className="font-normal"
+                        >
+                            Stoped at
+                        </span>
+                        <span
+                            className="text-xs"
+                        >
+                            {`${endTime?.hours ?? '- -'}:${endTime?.minutes ?? '- -'}`}
+                        </span>
                     </div>
-                    )}
-
-                    {typeof endTime?.minutes === 'number' && typeof endTime.hours === 'number' && (
-                    <div
-                        className="flex gap-1 text-xs"
-                    >
-                          <span
-                              className="font-normal"
-                          >
-                              Stoped at
-                          </span>
-                          <span
-                              className="text-xs"
-                          >
-                              {`${endTime.hours}:${endTime.minutes}`}
-                          </span>
-                    </div>
-                    )}
                 </div>
             </div>
         </div>

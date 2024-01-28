@@ -22,8 +22,6 @@ export const DownloadRecordingWindow: React.FC<DownloadRecordingWindowProps> = (
     const fileName = fileNameInput.value ?? 'download'
     const formatType = (formatInput.value as 'mp3' | 'webm' | 'mp4') ?? 'webm'
 
-    console.log({ fileName, formatType })
-
     void downloadRecording(fileName, formatType)
   }
 

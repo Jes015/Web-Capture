@@ -1,8 +1,9 @@
-import { type TimeStrap, type Time, type WorkerStopwatchMessage } from '@/models'
+import { type Time, type TimeStrap, type WorkerStopwatchMessage } from '@/models'
 import { StopwatchWorkerBuilder } from '@/workers'
 import { useEffect, useRef, useState } from 'react'
 export const useStopwatch = () => {
   const [time, setTime] = useState<Time | null>(null)
+
   const [startTime, setStartTime] = useState<TimeStrap | null>(null)
   const [endTime, setEndTime] = useState<TimeStrap | null>(null)
 
@@ -18,6 +19,7 @@ export const useStopwatch = () => {
         stopStopwatch()
 
         const date = new Date()
+
         setEndTime({ hours: date.getHours(), minutes: date.getMinutes() })
       }
 
@@ -49,10 +51,13 @@ export const useStopwatch = () => {
   }
 
   const stopStopwatch = () => {
-    console.log('stopping')
     worker.current?.stopStopwatch()
     const date = new Date()
-    setEndTime({ hours: date.getHours(), minutes: date.getMinutes() })
+
+    if (time != null) {
+      setEndTime({ hours: date.getHours(), minutes: date.getMinutes() })
+    }
+
     resetStopWatch()
   }
 
