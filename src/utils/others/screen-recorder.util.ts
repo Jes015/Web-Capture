@@ -31,6 +31,9 @@ export class CustomMediaRecorder {
 
   async startStreaming () {
     this.mediaStreamInstance = await navigator.mediaDevices.getDisplayMedia(defaultValues)
+    this.mediaRecorderInstance?.addEventListener('dataavailable', () => { console.log('dataavailable') })
+    this.mediaRecorderInstance?.addEventListener('stop', () => { console.log('stop') })
+    this.mediaRecorderInstance?.addEventListener('error', () => { console.log('error') })
     LoggerService.message({ trackSettings: this.mediaStreamInstance.getTracks()[0].getSettings() }, 'screen-recorder.util --> startStreaming:32')
     return this.mediaStreamInstance
   }

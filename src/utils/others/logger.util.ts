@@ -15,11 +15,11 @@ export class Logger {
     console.log('%c' + 'Jes015 Portfolio: https://portfolio-three-chi-27.vercel.app/ | Jes015 Blog: https://blog-one-murex.vercel.app/', 'font-family:Roboto; color:white; font-size:8px; font-weight:bold; background-color: #171717; border-radius: 2px; padding: 2px')
   }
 
-  public message (message: unknown, title: string) {
+  public message (message: unknown, title: string, type: 'log' | 'error' = 'log') {
     if (this.environment === ViteEnvironment.production) return
 
     console.group(title)
-    console.log(message)
+    console[type](message)
     console.groupEnd()
   }
 }
