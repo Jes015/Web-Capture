@@ -17,6 +17,8 @@ export const useRecorder = () => {
   useEffect(() => {
     mediaRecorder.current = new CustomMediaRecorder()
     return () => {
+      void mediaRecorder.current?.stopStreaming()
+      void mediaRecorder.current?.stopRecording()
       void mediaRecorder.current?.removeOnStopStreaming(cachedOnStopStreaming)
       mediaRecorder.current = undefined
     }
