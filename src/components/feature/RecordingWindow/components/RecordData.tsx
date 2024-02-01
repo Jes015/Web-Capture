@@ -58,7 +58,7 @@ export const RecordData = () => {
                                 Started at
                             </span>
                             <span
-                                className="text-xs"
+                                className="text-xs font-normal"
                             >
                                 {`${startTime?.hours ?? '- -'}:${startTime?.minutes ?? '- -'}`}
                             </span>
@@ -69,7 +69,7 @@ export const RecordData = () => {
                         <span
                             className="font-normal"
                         >
-                            Stoped at
+                            Stopped at
                         </span>
                         <span
                             className="text-xs"

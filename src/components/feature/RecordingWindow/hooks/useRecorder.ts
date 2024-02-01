@@ -1,4 +1,5 @@
 import { CWindowType } from '@/models'
+import { LoggerService } from '@/services/logger.service'
 import { useWindowSystemStore } from '@/services/store/zustand'
 import { CustomMediaRecorder } from '@/utils/others'
 import { useCallback, useEffect, useRef, useState } from 'react'
@@ -37,13 +38,18 @@ export const useRecorder = () => {
       return
     }
 
-    if (newStatus === 'on') {
-      await startRecording()
-    } else if (newStatus === 'off') {
-      await stopRecording()
-    }
+    try {
+      if (newStatus === 'on') {
+        await startRecording()
+      } else if (newStatus === 'off') {
+        await stopRecording()
+      }
 
-    setRecordingStatus(newStatus)
+      setRecordingStatus(newStatus)
+    } catch (error) {
+      LoggerService.message(error, 'useRecorder - toggleRecordingStatus', 'error')
+      setError('Something went wrong: startRecording failed')
+    }
   }
 
   const startRecording = async () => {
@@ -51,18 +57,14 @@ export const useRecorder = () => {
       setError('Something went wrong: toggle recording status')
       return
     }
-    try {
-      const streamObject = await mediaRecorder.current?.startStreaming()
-      await mediaRecorder.current.startRecording()
+    const streamObject = await mediaRecorder.current?.startStreaming()
+    await mediaRecorder.current.startRecording()
 
-      // In case that the user stop the recording from the default browser bar provided by the browser, this will work.
-      void mediaRecorder.current.onStopStreaming(cachedOnStopStreaming)
+    // In case that the user stop the recording from the default browser bar provided by the browser, this will work.
+    void mediaRecorder.current.onStopStreaming(cachedOnStopStreaming)
 
-      if (videoSourceRef.current != null) {
-        videoSourceRef.current.srcObject = streamObject
-      }
-    } catch (error) {
-      setError('Something went wrong: mediaRecorder startStreaming functions does not work')
+    if (videoSourceRef.current != null && streamObject != null) {
+      videoSourceRef.current.srcObject = streamObject
     }
   }
 
