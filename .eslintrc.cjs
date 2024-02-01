@@ -19,5 +19,5 @@ module.exports = {
     'no-multiple-empty-lines': 'off',
     '@typescript-eslint/return-await': 'off'
   },
-  ignorePatterns: ["vite.config.ts", "vite-env.d.ts"]
+  ignorePatterns: ["vite.config.ts", "vite-env.d.ts", "playwright.config.ts"]
 }
