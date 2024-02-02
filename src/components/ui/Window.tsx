@@ -30,8 +30,8 @@ export const Window: React.FC<WindowProps> = ({ children, className, icon, title
   return (
     <Rnd
       onMouseDown={handleOnClickToSuperposeWindow}
-      maxWidth={200}
-      minHeight={120}
+      maxWidth={500}
+      minHeight={500}
       bounds='window'
       enableResizing={false}
       enableUserSelectHack
@@ -43,7 +43,7 @@ export const Window: React.FC<WindowProps> = ({ children, className, icon, title
       <SectionLayout
         className={
           [
-            'flex flex-col absolute w-full h-full overflow-hidden',
+            'flex flex-col w-full h-full',
             className
           ].join(' ')
         }
@@ -66,7 +66,7 @@ export const Window: React.FC<WindowProps> = ({ children, className, icon, title
           }
           {...{ icon, title }}
         />
-        <SectionLayout.Content className='flex-grow w-full h-full'>
+        <SectionLayout.Content className='flex-grow w-full h-full '>
           {children}
         </SectionLayout.Content>
       </SectionLayout>

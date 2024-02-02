@@ -12,7 +12,7 @@ export const RecordVideo = () => {
             ref={videoSourceRef as MutableRefObject<HTMLVideoElement | null>}
             className={
                 [
-                  isDisplayingVideo ? 'absolute w-full h-full z-0 [top:-12px] left-0' : 'hidden'
+                  isDisplayingVideo ? 'z-20 relative' : 'hidden', 'h-full w-full'
                 ].join(' ')
             }
         >
