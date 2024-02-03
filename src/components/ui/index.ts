@@ -4,5 +4,5 @@ export * from './Select/Select'
 export * from './Sheet'
 export * from './SwitchInput'
 export * from './TextField/TextField'
-export * from './Window'
+export * from './Window/Window'
 
