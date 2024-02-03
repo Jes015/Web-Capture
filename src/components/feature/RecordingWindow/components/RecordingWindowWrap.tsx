@@ -21,31 +21,45 @@ export const RecordingWindowWrap: React.FC<RecordingWindowWrapProps> = ({
 
   return (
     <Window
-      title="Recording Window"
-      icon={
-        <IconRecording
-          className={[
-            'text-red-400 text-base',
-            recordingStatus === recordingStatusType.on
-              ? 'animate-pulse-fast'
-              : ''
-          ].join(' ')}
-        />
-      }
-      rightNode={<RecordingWindowDropdownMenu />}
       rndconfig={{
         minWidth: 210,
-        minHeight: 123
+        minHeight: 123,
+        maxWidth: 300,
+        enableResizing: true,
+        lockAspectRatio: true,
+        default: {
+          height: 123,
+          width: 210,
+          x: 0,
+          y: 0
+        }
       }}
       {...{ windowData }}
     >
-      <div className="relative h-full w-full">
-        <RecordVideo />
-        <div className="w-full h-full flex flex-col p-1 gap-1 pt-2 z-10">
-          <RecordData />
-          <RecordControls />
+      <Window.Header
+        title="Recording Window"
+        icon={
+          <IconRecording
+            className={[
+              'text-red-400 text-base',
+              recordingStatus === recordingStatusType.on
+                ? 'animate-pulse-fast'
+                : ''
+            ].join(' ')}
+          />
+        }
+        rightNode={<RecordingWindowDropdownMenu />}
+        {...{ windowData }}
+      />
+      <Window.Content>
+        <div className="relative h-full w-full">
+          <RecordVideo />
+          <div className="w-full h-full flex flex-col gap-1 z-10">
+            <RecordData />
+            <RecordControls />
+          </div>
         </div>
-      </div>
+      </Window.Content>
     </Window>
   )
 }
