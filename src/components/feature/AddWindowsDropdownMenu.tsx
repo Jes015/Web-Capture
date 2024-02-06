@@ -5,12 +5,12 @@ import { useWindowSystemStore } from '@/services/store/zustand'
 export const AddWindowsDropdownMenu = () => {
   const [addWindow] = useWindowSystemStore((state) => [state.addWindow])
 
-  const handleOnClickToAddRecordWindow = () => {
-    addWindow({ id: crypto.randomUUID(), name: 'new recording window', type: CWindowType.record })
+  const handleOnClickToAddScreenRecordingWindow = () => {
+    addWindow({ id: crypto.randomUUID(), name: 'Screen recording', type: CWindowType.record, recordingCoreType: 'screen' })
   }
 
-  const handleOnClickToAddWatchRecordingWindow = () => {
-    addWindow({ id: crypto.randomUUID(), name: 'new watch recording window', type: CWindowType.watchRecord, videoAndAudioBlob: null })
+  const handleOnClickToAddWebcamRecordingWindow = () => {
+    addWindow({ id: crypto.randomUUID(), name: 'Web-cam recording', type: CWindowType.record, recordingCoreType: 'web-cam' })
   }
 
   return (
@@ -24,14 +24,14 @@ export const AddWindowsDropdownMenu = () => {
                 }
             >
                 <DropdownMenu.Item
-                    onClick={handleOnClickToAddRecordWindow}
+                    onClick={handleOnClickToAddScreenRecordingWindow}
                 >
-                    Recording
+                    Screen | Tab | Window
                 </DropdownMenu.Item>
                 <DropdownMenu.Item
-                    onClick={handleOnClickToAddWatchRecordingWindow}
+                    onClick={handleOnClickToAddWebcamRecordingWindow}
                 >
-                    Watch Recording
+                    Web cam
                 </DropdownMenu.Item>
             </DropdownMenu>
         </div>

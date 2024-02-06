@@ -15,8 +15,6 @@ export const RecordVideo = () => {
                   isDisplayingVideo ? 'z-20 relative' : 'hidden', 'h-full w-full'
                 ].join(' ')
             }
-        >
-
-        </video>
+        ></video>
   )
 }

@@ -26,7 +26,7 @@ export const RecordingWindowWrap: React.FC<RecordingWindowWrapProps> = ({
         minHeight: 123,
         maxWidth: 300,
         enableResizing: true,
-        lockAspectRatio: true,
+        lockAspectRatio: false,
         default: {
           height: 123,
           width: 210,
@@ -37,7 +37,7 @@ export const RecordingWindowWrap: React.FC<RecordingWindowWrapProps> = ({
       {...{ windowData }}
     >
       <Window.Header
-        title="Recording Window"
+        title={windowData.name}
         icon={
           <IconRecording
             className={[
@@ -51,10 +51,10 @@ export const RecordingWindowWrap: React.FC<RecordingWindowWrapProps> = ({
         rightNode={<RecordingWindowDropdownMenu />}
         {...{ windowData }}
       />
-      <Window.Content>
+      <Window.Content className='!p-0 !pt-0'>
         <div className="relative h-full w-full">
           <RecordVideo />
-          <div className="w-full h-full flex flex-col gap-1 z-10">
+          <div className="w-full h-full flex flex-col gap-1 p-1 z-10">
             <RecordData />
             <RecordControls />
           </div>

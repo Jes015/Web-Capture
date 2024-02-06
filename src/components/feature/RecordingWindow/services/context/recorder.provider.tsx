@@ -1,9 +1,14 @@
-import { type BaseComponentType } from '@/models'
+import { type BaseComponentProps } from '@/models'
+import { type RecordingType } from '@/utils/others'
 import { useRecorder } from '../../hooks'
 import { recorderContext } from './recorder.context'
 
-export const RecorderProvider: BaseComponentType = ({ children }) => {
-  const values = useRecorder()
+interface RecorderProviderProps extends BaseComponentProps {
+  recordingType: RecordingType
+}
+
+export const RecorderProvider: React.FC<RecorderProviderProps> = ({ children, recordingType }) => {
+  const values = useRecorder(recordingType)
 
   return (
         <recorderContext.Provider
