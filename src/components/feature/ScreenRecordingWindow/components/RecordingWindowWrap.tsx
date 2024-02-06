@@ -1,14 +1,14 @@
 import { IconRecording } from '@/assets/Icons'
 import { Window } from '@/components/ui'
 import { type RecordWindowData } from '@/models'
-import { recordingStatusType } from '../models'
-import { useRecorderContext } from '../services/context'
 import {
   RecordControls,
   RecordData,
   RecordVideo,
   RecordingWindowDropdownMenu
-} from './'
+} from '.'
+import { recordingStatusType } from '../models'
+import { useRecorderContext } from '../services/context'
 
 interface RecordingWindowWrapProps {
   windowData: RecordWindowData

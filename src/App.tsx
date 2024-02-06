@@ -4,7 +4,7 @@ import { Suspense, lazy, useEffect } from 'react'
 import { CWindowType, type DownloadRecordingWindowData, type RecordWindowData, type WatchRecordingWindowData } from './models'
 import { useWindowSystemStore } from './services/store/zustand'
 
-const RecordingWindow = lazy(async () => import('@/components/feature/RecordingWindow/RecordingWindow'))
+const RecordingWindow = lazy(async () => import('@/components/feature/ScreenRecordingWindow/RecordingWindow'))
 const WatchRecordingWindow = lazy(async () => import('@/components/feature/WatchRecordingWindow/WatchRecordingWindow'))
 const DownloadRecordingWindow = lazy(async () => import('@/components/feature/DownloadRecordingWindow/DownloadRecordingWindow'))
 
