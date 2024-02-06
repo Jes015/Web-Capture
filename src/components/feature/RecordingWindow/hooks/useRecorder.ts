@@ -1,12 +1,12 @@
 import { CWindowType } from '@/models'
 import { LoggerService } from '@/services/logger.service'
 import { useWindowSystemStore } from '@/services/store/zustand'
-import { CustomMediaRecorder } from '@/utils/others'
+import { CustomMediaRecorder, type RecordingType } from '@/utils/others'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { type RecordingStatus } from '../models/recorder.model'
 import { useRecorderWindowContext } from '../services/context'
 
-export const useRecorder = () => {
+export const useRecorder = (recordingType: RecordingType) => {
   const [recordingStatus, setRecordingStatus] = useState<RecordingStatus>('off')
   const mediaRecorder = useRef<CustomMediaRecorder>()
   const [error, setError] = useState<string>()
@@ -15,7 +15,7 @@ export const useRecorder = () => {
   const { getWindowData } = useRecorderWindowContext()
 
   useEffect(() => {
-    mediaRecorder.current = new CustomMediaRecorder()
+    mediaRecorder.current = new CustomMediaRecorder(recordingType)
     return () => {
       void mediaRecorder.current?.stopStreaming()
       void mediaRecorder.current?.stopRecording()

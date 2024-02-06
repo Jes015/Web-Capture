@@ -1,3 +1,4 @@
+import { type RecordingType } from '@/utils/others'
 import { type UUID } from 'crypto'
 
 export const CWindowType = {
@@ -12,6 +13,7 @@ export interface WindowData {
   id: UUID
   name: string
   type: TWindowType
+  recordingCoreType?: RecordingType
   zIndex?: number
 }
 

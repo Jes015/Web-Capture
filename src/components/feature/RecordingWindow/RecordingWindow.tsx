@@ -10,7 +10,7 @@ interface RecordWindowProps {
 export const RecordingWindow: React.FC<RecordWindowProps> = ({ windowData }) => {
   return (
     <RecorderWindowProvider {...{ windowData }}>
-      <RecorderProvider>
+      <RecorderProvider recordingType={windowData?.recordingCoreType ?? 'screen'}>
         <RecordingWindowWrap
           {...{ windowData }}
         />

@@ -1,4 +1,4 @@
 export * from './AddWindowsDropdownMenu'
-export * from './ScreenRecordingWindow/RecordingWindow'
+export * from './RecordingWindow/RecordingWindow'
 export * from './WatchRecordingWindow/WatchRecordingWindow'
 

@@ -15,22 +15,27 @@ let defaultValues: DisplayMediaStreamOptions = {
   monitorTypeSurfaces: 'include'
 }
 
+export type RecordingType = 'screen' | 'web-cam'
+
 export class CustomMediaRecorder {
   private mediaStreamInstance: MediaStream | null
   private mediaRecorderInstance: MediaRecorder | null
+  private readonly recordingType: RecordingType
 
-  constructor (mediaValues?: DisplayMediaStreamOptions) {
+  constructor (recordingType: RecordingType, mediaValues?: DisplayMediaStreamOptions) {
     defaultValues = {
       ...defaultValues,
       ...mediaValues
     }
 
+    this.recordingType = recordingType
     this.mediaStreamInstance = null
     this.mediaRecorderInstance = null
   }
 
   async startStreaming () {
-    this.mediaStreamInstance = await navigator.mediaDevices.getDisplayMedia(defaultValues)
+    const recordingKey = this.recordingType === 'screen' ? 'getDisplayMedia' : 'getUserMedia'
+    this.mediaStreamInstance = await navigator.mediaDevices[recordingKey](defaultValues)
     this.mediaRecorderInstance?.addEventListener('dataavailable', () => { console.log('dataavailable') })
     this.mediaRecorderInstance?.addEventListener('stop', () => { console.log('stop') })
     this.mediaRecorderInstance?.addEventListener('error', () => { console.log('error') })
