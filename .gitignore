@@ -30,3 +30,7 @@ dist-ssr
 /playwright/.cache/
 /test-examples
 
+
+# BACK
+postgres
+.env
