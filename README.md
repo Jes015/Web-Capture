@@ -1,6 +1,6 @@
 # Screen Recording Project
 
-This project provides an easy-to-use screen recording tool, developed in JavaScript and TypeScript.
+This project provides an easy-to-use screen recording tool, developed in TypeScript, React and NestJS.
 
 ## Features
 
