@@ -1,0 +1,9 @@
+{
+    "typescript.format.semicolons": "insert",
+    "javascript.format.semicolons": "insert",
+    "editor.autoIndent": "full",
+    "editor.insertSpaces": false,
+    "editor.comments.insertSpace": true,
+    "javascript.format.insertSpaceAfterCommaDelimiter": true,
+    "typescript.format.insertSpaceAfterCommaDelimiter": true
+}
