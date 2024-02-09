@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { Auth } from './decorators';
 import { SignInDto, SignUpDto } from './dto';
 
 @Controller('auth')
@@ -16,6 +17,7 @@ export class AuthController {
     return this.authService.signUp(signUpDto);
   }
 
+  @Auth('admin')
   @Get('private')
   findAll() {
     return 'private route prr';

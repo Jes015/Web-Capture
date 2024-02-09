@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { compareSync, hashSync } from 'bcrypt';
 import { Repository } from 'typeorm';
@@ -12,6 +13,8 @@ export class AuthService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
+
+    private jwtService: JwtService,
   ) {}
 
   async signIn(signInDto: SignInDto) {
@@ -54,12 +57,18 @@ export class AuthService {
     }
   }
 
-  private getUserAndJwt(user: User) {
+  async confirmEmail() {
+    //TODO: confirm email
+  }
+
+  private async getUserAndJwt(user: User) {
     const publicUserData: Partial<User> = structuredClone(user);
 
     delete publicUserData.password;
+    delete publicUserData.isActive;
 
-    //TODO:RETURN JWT
-    return { user, token: 'MI-PIRULIN.COM' };
+    const tokenPayload = { id: user.id };
+
+    return { user, token: await this.jwtService.signAsync(tokenPayload) };
   }
 }
