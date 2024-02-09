@@ -12,6 +12,10 @@
     "husky": "^9.0.10"
   },
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "dev": "turbo run dev"
+  },
+  "dependencies": {
+    "turbo": "^1.12.3"
   }
 }
