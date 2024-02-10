@@ -1,2 +1,3 @@
-export * from './Auth.decorator';
-export * from './SetRoles.decorator';
+export * from './auth.decorator';
+export * from './set-roles.decorator';
+

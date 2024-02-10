@@ -1,10 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable, forwardRef } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { compareSync, hashSync } from 'bcrypt';
 import { Repository } from 'typeorm';
 import { BadCredentialsException } from '../common/exceptions';
 import { postgresErrorHandler } from '../common/util';
+import { EmailVerificationService } from '../email-verification/email-verification.service';
 import { User } from '../user/entities/user.entity';
 import { SignInDto, SignUpDto } from './dto';
 
@@ -12,9 +13,12 @@ import { SignInDto, SignUpDto } from './dto';
 export class AuthService {
   constructor(
     @InjectRepository(User)
-    private userRepository: Repository<User>,
+    private readonly userRepository: Repository<User>,
 
-    private jwtService: JwtService,
+    private readonly jwtService: JwtService,
+
+    @Inject(forwardRef(() => EmailVerificationService))
+    private readonly emailVerificationService: EmailVerificationService,
   ) {}
 
   async signIn(signInDto: SignInDto) {
@@ -57,8 +61,8 @@ export class AuthService {
     }
   }
 
-  async confirmEmail() {
-    //TODO: confirm email
+  public async sendUserEmailValidation(data: SignUpDto) {
+    return await this.emailVerificationService.startEmailVerification(data);
   }
 
   private async getUserAndJwt(user: User) {

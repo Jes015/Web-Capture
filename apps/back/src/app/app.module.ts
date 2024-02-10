@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SchemaEnv } from '../config';
 import { AuthModule } from './auth/auth.module';
+import { EmailVerificationModule } from './email-verification/email-verification.module';
 import { UserModule } from './user/user.module';
 
 @Module({
@@ -23,6 +24,7 @@ import { UserModule } from './user/user.module';
     }),
     UserModule,
     AuthModule,
+    EmailVerificationModule,
   ],
   controllers: [],
   providers: [],

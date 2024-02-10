@@ -1,8 +1,8 @@
 import { UseGuards, applyDecorators } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { RoleGuard } from '../guards/';
+import { RoleGuard } from '../guards';
 import { TValidRoleArray } from '../models';
-import { SetRoles } from './SetRoles.decorator';
+import { SetRoles } from './set-roles.decorator';
 
 export const Auth = (...roles: TValidRoleArray) =>
   applyDecorators(
