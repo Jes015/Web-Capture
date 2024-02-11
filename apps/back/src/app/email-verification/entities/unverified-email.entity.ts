@@ -1,9 +1,13 @@
-import { Column, Entity } from 'typeorm';
+import { UUID } from 'crypto';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('unverified-emails')
 export class UnverifiedEmail {
+  @PrimaryGeneratedColumn('uuid')
+  id: UUID;
+
   @Column('text', {
-    primary: true,
+    unique: true,
   })
   email: string;
 

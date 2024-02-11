@@ -1,7 +1,12 @@
-import { Inject, Injectable, forwardRef } from '@nestjs/common';
+import {
+  ConflictException,
+  Inject,
+  Injectable,
+  forwardRef,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
-import { compareSync, hashSync } from 'bcrypt';
+import { compareSync } from 'bcrypt';
 import { Repository } from 'typeorm';
 import { BadCredentialsException } from '../common/exceptions';
 import { postgresErrorHandler } from '../common/util';
@@ -49,8 +54,6 @@ export class AuthService {
 
   async signUp(signUpDto: SignUpDto) {
     try {
-      signUpDto.password = hashSync(signUpDto.password, 10);
-
       const user = this.userRepository.create(signUpDto);
 
       const userData = await this.userRepository.save(user);
@@ -62,6 +65,17 @@ export class AuthService {
   }
 
   public async sendUserEmailValidation(data: SignUpDto) {
+    const userFound = await this.userRepository.findOneBy({
+      email: data.email,
+      username: data.username,
+    });
+
+    if (userFound != null) {
+      throw new ConflictException(
+        'This username or email already exists in db',
+      );
+    }
+
     return await this.emailVerificationService.startEmailVerification(data);
   }
 
@@ -69,10 +83,12 @@ export class AuthService {
     const publicUserData: Partial<User> = structuredClone(user);
 
     delete publicUserData.password;
-    delete publicUserData.isActive;
 
     const tokenPayload = { id: user.id };
 
-    return { user, token: await this.jwtService.signAsync(tokenPayload) };
+    return {
+      user: publicUserData,
+      token: await this.jwtService.signAsync(tokenPayload),
+    };
   }
 }

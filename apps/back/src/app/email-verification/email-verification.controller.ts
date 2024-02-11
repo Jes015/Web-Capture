@@ -1,5 +1,4 @@
-import { Body, Controller, Get } from '@nestjs/common';
-import { SignUpDto } from '../auth/dto';
+import { Controller, Get, Param } from '@nestjs/common';
 import { EmailVerificationService } from './email-verification.service';
 
 @Controller('email-verification')
@@ -8,8 +7,10 @@ export class EmailVerificationController {
     private readonly emailVerificationService: EmailVerificationService,
   ) {}
 
-  @Get()
-  verifyEmail(@Body() emailToken: SignUpDto) {
-    return this.emailVerificationService.verifyEmail(emailToken);
+  @Get(':verificationToken')
+  verifyEmail(@Param('verificationToken') verificationToken: string) {
+    return this.emailVerificationService.verifyAndSignUpEmail(
+      verificationToken,
+    );
   }
 }

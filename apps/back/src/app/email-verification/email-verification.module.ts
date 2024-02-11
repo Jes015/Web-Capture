@@ -1,5 +1,6 @@
 import { Module, forwardRef } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ResendModule } from 'nestjs-resend';
 import { AuthModule } from '../auth/auth.module';
@@ -15,7 +16,24 @@ import { UnverifiedEmail } from './entities/unverified-email.entity';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
         return {
-          apiKey: configService.get('AUTH_RESEND_TOKEN'),
+          apiKey: configService.get('AUTH_RESEND_API_KEY'),
+        };
+      },
+    }),
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory(configService: ConfigService) {
+        const secret = configService.get<string>('AUTH_RESEND_TOKEN_SECRET');
+        const tokenDuration = configService.get<string>(
+          'AUTH_RESEND_TOKEN_EXPIRATION',
+        );
+
+        return {
+          secret,
+          signOptions: {
+            expiresIn: tokenDuration,
+          },
         };
       },
     }),
