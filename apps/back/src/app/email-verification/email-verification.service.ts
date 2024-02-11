@@ -1,11 +1,13 @@
 import {
   Inject,
   Injectable,
+  Logger,
   NotFoundException,
   forwardRef,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
+import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
 import { hashSync } from 'bcrypt';
 import { ResendService } from 'nestjs-resend';
@@ -18,6 +20,8 @@ import { UnverifiedEmail } from './entities';
 
 @Injectable()
 export class EmailVerificationService {
+  private readonly logger = new Logger(EmailVerificationService.name);
+
   constructor(
     @InjectRepository(UnverifiedEmail)
     private readonly unverifiedEmailRepository: Repository<UnverifiedEmail>,
@@ -41,7 +45,6 @@ export class EmailVerificationService {
 
       const unverifiedEmail = this.unverifiedEmailRepository.create({
         email: createUnverifiedEmailDto.email,
-        requestedVerification: new Date(),
       });
       await this.unverifiedEmailRepository.save(unverifiedEmail);
 
@@ -63,11 +66,9 @@ export class EmailVerificationService {
 
   async verifyAndSignUpEmail(token: string) {
     try {
-      const isAValidToken = await this.jwtService.verifyAsync(token);
+      await this.jwtService.verifyAsync(token);
 
       const userDataDecoded = this.jwtService.decode(token);
-
-      console.log({ isAValidToken, userDataDecoded });
 
       const { affected } = await this.unverifiedEmailRepository.delete({
         email: userDataDecoded.email,
@@ -85,7 +86,7 @@ export class EmailVerificationService {
     }
   }
 
-  async sendEmail(to: string, html: string) {
+  private async sendEmail(to: string, html: string) {
     const fromData = {
       subject: this.configService.get<string>('RESEND_FROM_SUBJECT'),
       email: this.configService.get<string>('RESEND_FROM_EMAIL'),
@@ -96,6 +97,26 @@ export class EmailVerificationService {
       to,
       subject: 'Email verification - Screen capture',
       html,
+    });
+  }
+
+  @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
+  private async removeUnverifiedEmails() {
+    this.logger.verbose('Removing unverified emails');
+
+    const unverifiedEmails = await this.unverifiedEmailRepository.find({});
+
+    const currentDate = new Date();
+    let tempEmailDate = currentDate;
+
+    unverifiedEmails.forEach((unverifiedEmail) => {
+      tempEmailDate = new Date(unverifiedEmail.requestedVerification);
+      if (tempEmailDate.getDate() !== currentDate.getDate()) {
+        this.unverifiedEmailRepository.delete({ email: unverifiedEmail.email });
+        this.logger.warn(
+          `Unverified email ${unverifiedEmail.email} has been deleted`,
+        );
+      }
     });
   }
 }
