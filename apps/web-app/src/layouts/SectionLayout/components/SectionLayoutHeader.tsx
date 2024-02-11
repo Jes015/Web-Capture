@@ -2,7 +2,7 @@ import { Sheet } from '@/components/ui'
 import { forwardRef, type HTMLAttributes } from 'react'
 
 interface SectionLayoutHeaderProps extends HTMLAttributes<HTMLDivElement> {
-  title?: string
+  name?: React.ReactNode
   icon?: React.ReactNode
   rightNode?: React.ReactNode
 }
@@ -10,7 +10,7 @@ interface SectionLayoutHeaderProps extends HTMLAttributes<HTMLDivElement> {
 export type SectionLayoutHeaderPropsPartial = Partial<SectionLayoutHeaderProps>
 
 export const SectionLayoutHeader = forwardRef<HTMLDivElement, SectionLayoutHeaderProps>(
-  ({ title, icon, children, className, rightNode, ...props }, ref) => {
+  ({ name, icon, children, className, rightNode, ...props }, ref) => {
     return (
       <Sheet
         as="header"
@@ -23,18 +23,18 @@ export const SectionLayoutHeader = forwardRef<HTMLDivElement, SectionLayoutHeade
         {...{ ...props, ref }}
       >
         {
-          title != null || icon != null
+          name != null || icon != null
             ? (
               <div
-                className='flex items-center justify-between'
+                className='flex items-center justify-between gap-1'
               >
                 <div
                   className="flex items-center gap-1 flex-grow"
                 >
                   {icon}
-                  <h2 className="font-bold text-sm">
-                    {title}
-                  </h2>
+                  <div className="font-bold flex-grow text-sm">
+                    {name}
+                  </div>
                 </div>
                 <div className='flex items-center'>
                   {rightNode}

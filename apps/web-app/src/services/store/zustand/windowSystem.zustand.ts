@@ -1,4 +1,4 @@
-import { type WindowDataArray, type WindowTypes } from '@/models'
+import { type WindowData, type WindowDataArray, type WindowTypes } from '@/models'
 import { toast } from '@/utils/others'
 import { type UUID } from 'crypto'
 import { create } from 'zustand'
@@ -12,6 +12,7 @@ interface WindowSystemActions {
   removeWindow: (windowId: UUID) => void
   setError: (message: string) => void
   superposeAWindow: (windowId: UUID) => void
+  updateWindow: (windowId: UUID, newWindowData: WindowData) => void
 }
 
 export const useWindowSystemStore = create<WindowSystemState & WindowSystemActions>((set, get) => ({
@@ -60,5 +61,16 @@ export const useWindowSystemStore = create<WindowSystemState & WindowSystemActio
     windowUpdated.zIndex = higherZIndex
     const newWindowsArray = get().windows.with(windowIndex, windowUpdated)
     set(() => ({ windows: newWindowsArray }))
+  },
+  updateWindow: (windowId, windowUpdated) => {
+    const windowToUpdateIndex = get().windows.findIndex((window) => window.id === windowId)
+
+    if (windowToUpdateIndex === -1) {
+      get().setError('This window does not exits in the window system')
+    }
+
+    const newWindowArray = get().windows.with(windowToUpdateIndex, windowUpdated)
+
+    set({ windows: newWindowArray })
   }
 }))

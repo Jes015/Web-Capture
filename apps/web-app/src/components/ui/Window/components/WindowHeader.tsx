@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui'
+import { Button, Input } from '@/components/ui'
 import { SectionLayout } from '@/layouts'
 import { type SectionLayoutHeaderPropsPartial } from '@/layouts/SectionLayout/components'
 import { type WindowData } from '@/models'
@@ -9,15 +9,28 @@ interface WindowHeaderProps extends SectionLayoutHeaderPropsPartial {
   windowData: WindowData
 }
 
-export const WindowHeader: React.FC<WindowHeaderProps> = ({ icon, title, rightNode, windowData }) => {
-  const [removeWindow] = useWindowSystemStore(state => [state.removeWindow])
+export const WindowHeader: React.FC<WindowHeaderProps> = ({ icon, rightNode, windowData }) => {
+  const [removeWindow, updateWindow] = useWindowSystemStore(state => [state.removeWindow, state.updateWindow])
 
   const handleOnClickToCloseWindow = () => {
     removeWindow(windowData.id)
   }
+
+  const handleToRename = (event: React.FormEvent<HTMLInputElement>) => {
+    const newWindowName = event.currentTarget.value
+
+    const newWindowData = { ...windowData }
+
+    newWindowData.name = newWindowName
+    updateWindow(windowData.id, newWindowData)
+  }
+
   return (
         <SectionLayout.Header
             className='select-none w-full'
+            name={
+              <Input className='w-full border-none px-1' defaultValue={windowData.name} onInput={handleToRename} />
+            }
             rightNode={
                 <div
                     className='flex items-center gap-1'
@@ -32,7 +45,7 @@ export const WindowHeader: React.FC<WindowHeaderProps> = ({ icon, title, rightNo
                     </Button>
                 </div>
             }
-            {...{ icon, title }}
+            {...{ icon }}
         />
   )
 }

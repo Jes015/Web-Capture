@@ -34,7 +34,6 @@ export const DownloadRecordingWindow: React.FC<DownloadRecordingWindowProps> = (
       }}
     >
       <Window.Header
-        title='Download Recording'
         {...{ windowData }}
         icon={<DownloadIcon className="text-green-400 text-base" />}
       />
@@ -55,7 +54,7 @@ export const DownloadRecordingWindow: React.FC<DownloadRecordingWindowProps> = (
               >
                 File name
               </TextField.Label>
-              <Input name='filename' className='w-full' placeholder='Hola' />
+              <Input name='filename' defaultValue={windowData.name} className='w-full' placeholder='Hola' />
             </TextField>
 
             <TextField

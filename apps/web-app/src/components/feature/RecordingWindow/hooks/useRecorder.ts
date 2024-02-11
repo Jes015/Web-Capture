@@ -4,7 +4,6 @@ import { useWindowSystemStore } from '@/services/store/zustand'
 import { CustomMediaRecorder, type RecordingType } from '@/utils/others'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { type RecordingStatus } from '../models/recorder.model'
-import { useRecorderWindowContext } from '../services/context'
 
 export const useRecorder = (recordingType: RecordingType) => {
   const [recordingStatus, setRecordingStatus] = useState<RecordingStatus>('off')
@@ -12,7 +11,6 @@ export const useRecorder = (recordingType: RecordingType) => {
   const [error, setError] = useState<string>()
   const videoSourceRef = useRef<HTMLVideoElement>()
   const [addWindow] = useWindowSystemStore((state) => [state.addWindow])
-  const { getWindowData } = useRecorderWindowContext()
 
   useEffect(() => {
     mediaRecorder.current = new CustomMediaRecorder(recordingType)
@@ -86,7 +84,7 @@ export const useRecorder = (recordingType: RecordingType) => {
     if (streamBlob == null) return
 
     // Opens a new window to watch the video recorded
-    addWindow({ name: `${getWindowData()?.name}-recorded`, type: CWindowType.watchRecord, videoAndAudioBlob: streamBlob, id: crypto.randomUUID() })
+    addWindow({ name: 'Watch recording', type: CWindowType.watchRecord, videoAndAudioBlob: streamBlob, id: crypto.randomUUID() })
 
     if (videoSourceRef.current != null) {
       videoSourceRef.current.srcObject = null

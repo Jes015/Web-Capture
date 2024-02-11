@@ -37,7 +37,6 @@ export const RecordingWindowWrap: React.FC<RecordingWindowWrapProps> = ({
       {...{ windowData }}
     >
       <Window.Header
-        title={windowData.name}
         icon={
           <IconRecording
             className={[

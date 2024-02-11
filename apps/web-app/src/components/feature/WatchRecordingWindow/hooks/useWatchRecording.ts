@@ -24,7 +24,7 @@ export const useWatchRecording = (windowData: WatchRecordingWindowData) => {
       return
     }
 
-    addWindow({ id: crypto.randomUUID(), name: `${windowData.name} Download`, type: CWindowType.downloadRecord, videoAndAudioBlob: windowData.videoAndAudioBlob })
+    addWindow({ id: crypto.randomUUID(), name: windowData.name, type: CWindowType.downloadRecord, videoAndAudioBlob: windowData.videoAndAudioBlob })
   }
 
   return { videoElementRef, downloadRecording }
