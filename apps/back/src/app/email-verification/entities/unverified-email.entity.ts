@@ -11,7 +11,7 @@ export class UnverifiedEmail {
   })
   email: string;
 
-  @Column('date', {
+  @Column('timestamp', {
     default: new Date(),
   })
   requestedVerification: Date;

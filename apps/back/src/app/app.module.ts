@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SchemaEnv } from '../config';
 import { AuthModule } from './auth/auth.module';
@@ -25,6 +26,7 @@ import { UserModule } from './user/user.module';
     UserModule,
     AuthModule,
     EmailVerificationModule,
+    ScheduleModule.forRoot(),
   ],
   controllers: [],
   providers: [],
