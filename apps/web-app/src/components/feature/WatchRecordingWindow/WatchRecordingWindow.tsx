@@ -32,7 +32,6 @@ export const WatchRecordingWindow: React.FC<WatchRecordingWindowProps> = ({ wind
       }}
     >
       <Window.Header
-        title='Watch Recording'
         icon={<IconVideoCam className="text-red-400 text-base" />}
         {...{ windowData }}
         rightNode={
