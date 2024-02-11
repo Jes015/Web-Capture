@@ -1,7 +1,8 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
+import { EmailVerificationModule } from '../email-verification/email-verification.module';
 import { UserModule } from '../user/user.module';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
@@ -26,8 +27,10 @@ import { JwtStrategy } from './strategies';
         };
       },
     }),
+    forwardRef(() => EmailVerificationModule),
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],
+  exports: [AuthService, PassportModule, JwtModule, JwtStrategy],
 })
 export class AuthModule {}

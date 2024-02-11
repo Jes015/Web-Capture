@@ -8,4 +8,9 @@ export const SchemaEnv = Joi.object({
   DB_PORT: Joi.number().default(5432).required(),
   AUTH_SECRET: Joi.string().min(20).required(),
   AUTH_EXPIRES: Joi.string().min(2).required(),
+  AUTH_RESEND_API_KEY: Joi.string().min(10).required(),
+  AUTH_RESEND_TOKEN_SECRET: Joi.string().min(10).required(),
+  AUTH_RESEND_TOKEN_EXPIRATION: Joi.string().min(2).required(),
+  RESEND_FROM_SUBJECT: Joi.string().min(2).required(),
+  RESEND_FROM_EMAIL: Joi.string().min(4).required(),
 }).required();

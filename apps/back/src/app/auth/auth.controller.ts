@@ -14,7 +14,7 @@ export class AuthController {
 
   @Post('signUp')
   signUp(@Body() signUpDto: SignUpDto) {
-    return this.authService.signUp(signUpDto);
+    return this.authService.sendUserEmailValidation(signUpDto);
   }
 
   @Auth('admin')

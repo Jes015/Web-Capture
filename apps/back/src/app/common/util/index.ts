@@ -1,1 +1,1 @@
-export * from './postgresErrorHanlder.util';
+export * from './postgres-error-handler.util';

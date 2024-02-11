@@ -7,8 +7,14 @@ import {
 } from 'class-validator';
 
 export class SignInDto {
-  @IsString()
-  @IsEmail()
+  @IsEmail(
+    {
+      host_whitelist: ['gmail.com'],
+    },
+    {
+      message: 'email must be an email gmail.',
+    },
+  )
   @MaxLength(50)
   email: string;
 

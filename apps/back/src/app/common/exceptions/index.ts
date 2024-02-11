@@ -1,1 +1,1 @@
-export * from './BadCredentials.exception';
+export * from './bad-credentials.exception';
