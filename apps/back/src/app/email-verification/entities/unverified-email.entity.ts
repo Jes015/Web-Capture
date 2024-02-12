@@ -11,8 +11,8 @@ export class UnverifiedEmail {
   })
   email: string;
 
-  @Column('timestamp', {
-    default: new Date(),
+  @Column('bigint', {
+    default: new Date().getTime(),
   })
-  requestedVerification: Date;
+  requestedVerification: number;
 }

@@ -11,7 +11,7 @@ import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
 import { hashSync } from 'bcrypt';
 import { ResendService } from 'nestjs-resend';
-import { Repository } from 'typeorm';
+import { LessThan, Repository } from 'typeorm';
 import { AuthService } from '../auth/auth.service';
 import { SignUpDto } from '../auth/dto';
 import { BadCredentialsException } from '../common/exceptions';
@@ -104,19 +104,11 @@ export class EmailVerificationService {
   private async removeUnverifiedEmails() {
     this.logger.verbose('Removing unverified emails');
 
-    const unverifiedEmails = await this.unverifiedEmailRepository.find({});
+    const date24HoursAgo = new Date();
+    date24HoursAgo.setHours(date24HoursAgo.getHours() - 24);
 
-    const currentDate = new Date();
-    let tempEmailDate = currentDate;
-
-    unverifiedEmails.forEach((unverifiedEmail) => {
-      tempEmailDate = new Date(unverifiedEmail.requestedVerification);
-      if (tempEmailDate.getDate() !== currentDate.getDate()) {
-        this.unverifiedEmailRepository.delete({ email: unverifiedEmail.email });
-        this.logger.warn(
-          `Unverified email ${unverifiedEmail.email} has been deleted`,
-        );
-      }
+    await this.unverifiedEmailRepository.delete({
+      requestedVerification: LessThan(date24HoursAgo.getTime()),
     });
   }
 }
