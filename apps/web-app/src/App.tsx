@@ -1,6 +1,5 @@
 import { MainLayout } from '@/layouts'
-import { showDriver } from '@/utils/others'
-import { Suspense, lazy, useEffect } from 'react'
+import { Suspense, lazy } from 'react'
 import { CWindowType } from './models'
 import { useWindowSystemStore } from './services/store/zustand'
 
@@ -16,10 +15,6 @@ const windowComponents = {
 
 function App () {
   const { windows } = useWindowSystemStore((state) => ({ windows: state.windows, addWindow: state.addWindow }))
-
-  useEffect(() => {
-    showDriver()
-  }, [])
 
   return (
     <MainLayout>

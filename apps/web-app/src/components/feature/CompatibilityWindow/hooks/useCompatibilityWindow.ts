@@ -1,3 +1,4 @@
+import { showDriver } from '@/utils/others'
 import { useEffect, useState } from 'react'
 import { defaultCompatibilityValues, type CompatibilityType } from '../models'
 
@@ -13,9 +14,13 @@ export const useCompatibilityWindow = () => {
     }
     setCompatibility(newCompatibilityValues)
 
-    const shouldShowWindows = Object.values(newCompatibilityValues).some(value => !value)
+    const shouldShowWindow = Object.values(newCompatibilityValues).some(value => !value)
 
-    setShowWindow(shouldShowWindows)
+    if (!shouldShowWindow) {
+      showDriver()
+    }
+
+    setShowWindow(shouldShowWindow)
   }, [])
 
   const toggleShowWindowStatus = () => {
