@@ -1,5 +1,5 @@
 import { IconGithub } from '@/assets/Icons'
-import { AddWindowsDropdownMenu } from '@/components/feature'
+import { AddWindowsDropdownMenu, CompatibilityWindow } from '@/components/feature'
 import { type BaseComponentType } from '@/models'
 import { Analytics } from '@vercel/analytics/react'
 import { Toaster } from 'sonner'
@@ -7,6 +7,7 @@ import { Toaster } from 'sonner'
 export const MainLayout: BaseComponentType = ({ children }) => {
   return (
     <div className='flex flex-col [height:100svh] [font-family:Roboto] text-white [font-weight:500]'>
+      <CompatibilityWindow />
       <div className='absolute z-[0] [height:100svh] [width:100svw] flex flex-col justify-center items-center'>
         <div className='flex flex-col justify-center opacity-10'>
           <span className='font-bold text-3xl sm:text-5xl  md:text-6xl pt-[0.18rem] select-none '>

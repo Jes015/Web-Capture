@@ -1,12 +1,18 @@
 import { MainLayout } from '@/layouts'
 import { showDriver } from '@/utils/others'
 import { Suspense, lazy, useEffect } from 'react'
-import { CWindowType, type DownloadRecordingWindowData, type RecordWindowData, type WatchRecordingWindowData } from './models'
+import { CWindowType } from './models'
 import { useWindowSystemStore } from './services/store/zustand'
 
 const RecordingWindow = lazy(async () => import('@/components/feature/RecordingWindow/RecordingWindow'))
 const WatchRecordingWindow = lazy(async () => import('@/components/feature/WatchRecordingWindow/WatchRecordingWindow'))
 const DownloadRecordingWindow = lazy(async () => import('@/components/feature/DownloadRecordingWindow/DownloadRecordingWindow'))
+
+const windowComponents = {
+  [CWindowType.record]: RecordingWindow,
+  [CWindowType.watchRecord]: WatchRecordingWindow,
+  [CWindowType.downloadRecord]: DownloadRecordingWindow
+} as const
 
 function App () {
   const { windows } = useWindowSystemStore((state) => ({ windows: state.windows, addWindow: state.addWindow }))
@@ -18,15 +24,15 @@ function App () {
   return (
     <MainLayout>
       <div
-        className='h-full flex flex-col justify-center items-center'
+        className='h-full flex flex-col justify-center items-center z-50'
       >
         <Suspense>
           {
-            windows.map((windowData) => {
-              if (windowData.type === CWindowType.record) return <RecordingWindow windowData={windowData as RecordWindowData} key={windowData.id} />
-              else if (windowData.type === CWindowType.watchRecord) return <WatchRecordingWindow windowData={windowData as WatchRecordingWindowData} key={windowData.id} />
-              else if (windowData.type === CWindowType.downloadRecord) return <DownloadRecordingWindow windowData={windowData as DownloadRecordingWindowData} key={windowData.id} />
-              return null
+            windows.map(windowData => {
+              const WindowComponent = windowComponents[windowData.type]
+
+              // @ts-expect-error we need to type this better to avoid to use a ts-expect
+              return <WindowComponent key={windowData.id} {...{ windowData }} />
             })
           }
         </Suspense>
