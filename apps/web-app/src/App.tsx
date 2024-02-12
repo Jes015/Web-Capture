@@ -24,7 +24,7 @@ function App () {
   return (
     <MainLayout>
       <div
-        className='h-full flex flex-col justify-center items-center'
+        className='h-full flex flex-col justify-center items-center z-50'
       >
         <Suspense>
           {
