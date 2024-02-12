@@ -1,4 +1,5 @@
 import { IconCheckCircle, IconCloseCircle } from '@/assets/Icons'
+import { showDriver } from '@/utils/others'
 import { useCompatibilityWindow } from './hooks'
 
 
@@ -9,6 +10,7 @@ export const CompatibilityWindow = () => {
 
   const handleOnClickToClose = () => {
     toggleShowWindowStatus()
+    showDriver()
   }
 
   return (
