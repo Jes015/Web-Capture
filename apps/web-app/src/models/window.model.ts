@@ -15,6 +15,7 @@ export interface WindowData {
   type: TWindowType
   recordingCoreType?: RecordingType
   zIndex?: number
+  oneOnly?: true
 }
 
 export interface WatchRecordingWindowData extends WindowData {

@@ -27,26 +27,35 @@ export const WindowHeader: React.FC<WindowHeaderProps> = ({ icon, rightNode, win
   }
 
   return (
-        <SectionLayout.Header
-            className='select-none w-full'
-            name={
-              <Input readOnly={readonlyTitle} className='w-full border-none px-1' defaultValue={windowData.name} onInput={handleOnInputToRename} />
-            }
-            rightNode={
-                <div
-                    className='flex items-center gap-1'
-                >
-                    {rightNode}
-                    <Button
-                        size='sm'
-                        className='h-full'
-                        onClick={handleOnClickToCloseWindow}
-                    >
-                        <Cross1Icon />
-                    </Button>
-                </div>
-            }
-            {...{ icon }}
+    <SectionLayout.Header
+      className='select-none w-full'
+      name={
+        <Input
+          readOnly={readonlyTitle}
+          className={
+            [
+              'w-full border-none px-1', readonlyTitle ? 'cursor-move' : ''
+            ].join(' ')
+          }
+          defaultValue={windowData.name}
+          onInput={handleOnInputToRename}
         />
+      }
+      rightNode={
+        <div
+          className='flex items-center flex-shrink-0 justify-end gap-1'
+        >
+          {rightNode}
+          <Button
+            size='sm'
+            className='h-full'
+            onClick={handleOnClickToCloseWindow}
+          >
+            <Cross1Icon />
+          </Button>
+        </div>
+      }
+      {...{ icon }}
+    />
   )
 }

@@ -10,7 +10,7 @@ export const AddWindowsDropdownMenu = () => {
   }
 
   const handleOnClickToAddWebcamRecordingWindow = () => {
-    addWindow({ id: crypto.randomUUID(), name: 'Web-cam recording', type: CWindowType.record, recordingCoreType: 'web-cam' })
+    addWindow({ id: crypto.randomUUID(), name: 'Webcam recording', type: CWindowType.record, recordingCoreType: 'web-cam' })
   }
 
   return (

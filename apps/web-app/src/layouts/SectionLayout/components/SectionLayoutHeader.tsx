@@ -38,7 +38,7 @@ export const SectionLayoutHeader = forwardRef<HTMLDivElement, SectionLayoutHeade
                     {name}
                   </div>
                 </div>
-                <div className='flex items-center'>
+                <div className='flex justify-end flex-shrink-0 items-center'>
                   {rightNode}
                 </div>
               </div>

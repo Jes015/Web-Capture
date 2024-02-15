@@ -5,7 +5,6 @@ import {
   forwardRef,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { Throttle, days, minutes } from '@nestjs/throttler';
 import { InjectRepository } from '@nestjs/typeorm';
 import { compareSync } from 'bcrypt';
 import { Repository } from 'typeorm';
@@ -16,7 +15,6 @@ import { User } from '../user/entities/user.entity';
 import { SignInDto, SignUpDto } from './dto';
 
 @Injectable()
-@Throttle({ default: { limit: 2, ttl: days(1) } })
 export class AuthService {
   constructor(
     @InjectRepository(User)
@@ -28,7 +26,6 @@ export class AuthService {
     private readonly emailVerificationService: EmailVerificationService,
   ) {}
 
-  @Throttle({ default: { limit: 8, ttl: minutes(1) } })
   async signIn(signInDto: SignInDto) {
     const userPreloaded = await this.userRepository.findOne({
       where: { email: signInDto.email },

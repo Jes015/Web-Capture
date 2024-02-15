@@ -6,6 +6,7 @@ import { useWindowSystemStore } from './services/store/zustand'
 const RecordingWindow = lazy(async () => import('@/components/feature/RecordingWindow/RecordingWindow'))
 const WatchRecordingWindow = lazy(async () => import('@/components/feature/WatchRecordingWindow/WatchRecordingWindow'))
 const DownloadRecordingWindow = lazy(async () => import('@/components/feature/DownloadRecordingWindow/DownloadRecordingWindow'))
+const AuthWindow = lazy(async () => import('@/components/feature/AuthWindow/AuthWindow'))
 
 const windowComponents = {
   [CWindowType.record]: RecordingWindow,
@@ -30,6 +31,7 @@ function App () {
               return <WindowComponent key={windowData.id} {...{ windowData }} />
             })
           }
+          <AuthWindow windowData={{ id: crypto.randomUUID(), name: 'Sign in', type: CWindowType.record, oneOnly: true }} />
         </Suspense>
       </div>
     </MainLayout>
