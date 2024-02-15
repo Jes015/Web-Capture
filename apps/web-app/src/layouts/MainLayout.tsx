@@ -11,7 +11,7 @@ export const MainLayout: BaseComponentType = ({ children }) => {
       <div className='absolute z-[0] [height:100svh] [width:100svw] flex flex-col justify-center items-center'>
         <div className='flex flex-col justify-center opacity-10'>
           <span className='font-bold text-3xl sm:text-5xl  md:text-6xl pt-[0.18rem] select-none '>
-            ScreenCapture
+            WebCapture
           </span>
         </div>
         <div className='flex gap-1'>
