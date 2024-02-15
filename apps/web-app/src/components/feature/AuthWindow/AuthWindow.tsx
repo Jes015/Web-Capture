@@ -57,7 +57,7 @@ export const AuthWindow: React.FC<AuthWindowProps> = ({ windowData }) => {
             className='bg-neutral-900'
           >
             Sign in
-            </Button>
+          </Button>
         </div>
       </Window.Content>
     </Window>
