@@ -6,7 +6,7 @@ import { Toaster } from 'sonner'
 
 export const MainLayout: BaseComponentType = ({ children }) => {
   return (
-    <div className='flex flex-col [height:100svh] [font-family:Roboto] text-white [font-weight:500]'>
+    <div className='flex flex-col [height:100svh] [font-family:Roboto] [font-weight:500]'>
       <CompatibilityWindow />
       <div className='absolute z-[0] [height:100svh] [width:100svw] flex flex-col justify-center items-center'>
         <div className='flex flex-col justify-center opacity-10'>

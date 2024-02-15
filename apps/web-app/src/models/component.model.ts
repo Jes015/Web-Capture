@@ -1,6 +1,4 @@
-export interface BaseComponentProps {
-  children?: React.ReactNode
-  className?: React.HTMLAttributes<HTMLElement>['className']
+export interface BaseComponentProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 export type BaseComponentType = React.FC<BaseComponentProps>
