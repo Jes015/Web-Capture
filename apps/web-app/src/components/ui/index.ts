@@ -1,9 +1,12 @@
+export * from './Anchor/Anchor'
 export * from './Button'
 export * from './DropdownMenu/DropdownMenu'
 export * from './Input'
+export * from './P/P'
 export * from './Select/Select'
 export * from './Sheet'
 export * from './SwitchInput'
 export * from './TextField/TextField'
+export * from './Title/Title'
 export * from './Window/Window'
 

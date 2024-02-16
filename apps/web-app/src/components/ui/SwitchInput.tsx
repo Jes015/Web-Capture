@@ -1,7 +1,7 @@
 import { type BaseComponentProps } from '@/models'
 import { Root, Thumb } from '@radix-ui/react-switch'
 
-interface SwitchInputProps extends BaseComponentProps {
+interface SwitchInputProps extends Omit<BaseComponentProps, 'onChange'> {
   onChange?: (e: boolean) => void
   defaultChecked?: boolean
   thumbClassName?: string

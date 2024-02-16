@@ -1,13 +1,20 @@
 import { type BaseComponentProps } from '@/models'
+import clsx from 'clsx'
 import { TextFieldLabel } from './components'
 
-export const TextField = ({ children, className }: BaseComponentProps) => {
+interface TextFieldProps extends BaseComponentProps {
+  direction?: 'column' | 'row'
+}
+
+export const TextField = ({ children, className, direction = 'column' }: TextFieldProps) => {
   return (
         <label className={
-            [
-              'inline-flex items-center gap-2',
-              className
-            ].join(' ')
+          clsx(
+            'inline-flex w-full',
+            { 'flex-col items-start': direction === 'column' },
+            { 'items-center gap-2': direction === 'row' },
+            className
+          )
         }>
             {children}
         </label>
