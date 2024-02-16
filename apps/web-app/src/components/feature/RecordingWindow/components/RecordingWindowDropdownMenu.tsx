@@ -11,12 +11,13 @@ export const RecordingWindowDropdownMenu: BaseComponentType = () => {
   }
 
   return (
-    <DropdownMenu triggerContent={<HamburgerMenuIcon className=' text-base' />}>
+    <DropdownMenu triggerContent={<HamburgerMenuIcon className='text-base' />}>
       <DropdownMenu.Item
         className='!p-0'
         clickable={false}
       >
         <TextField
+          direction='row'
           className='p-2'
         >
           <TextField.Label>

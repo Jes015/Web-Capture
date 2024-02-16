@@ -46,9 +46,7 @@ export const DownloadRecordingWindow: React.FC<DownloadRecordingWindowProps> = (
           <div
             className='flex gap-2'
           >
-            <TextField
-              className='flex flex-col !items-start !gap-0 flex-grow'
-            >
+            <TextField>
               <TextField.Label
                 className='text-xs'
               >
@@ -57,9 +55,7 @@ export const DownloadRecordingWindow: React.FC<DownloadRecordingWindowProps> = (
               <Input name='filename' defaultValue={windowData.name} className='w-full' placeholder='Hola' />
             </TextField>
 
-            <TextField
-              className='flex flex-col !items-start !gap-0'
-            >
+            <TextField>
               <TextField.Label
                 className='text-xs'
               >
