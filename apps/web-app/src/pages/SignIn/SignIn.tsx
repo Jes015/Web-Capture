@@ -14,7 +14,7 @@ const SignIn = () => {
       <div className='mt-2'>
         <form className='flex w-full flex-col' action="">
           <TextField>
-            <TextField.Label>Email</TextField.Label>
+            <TextField.Label >Email</TextField.Label>
             <Input className='w-full' placeholder='email@gmail.com' autoFocus />
           </TextField>
           <TextField>

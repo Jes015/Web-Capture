@@ -1,6 +1,7 @@
 import EmailVerification from '@/pages/EmailVerification/EmailVerification'
 import Home from '@/pages/Home/Home'
 import SignIn from '@/pages/SignIn/SignIn'
+import SignUp from '@/pages/SignUp/signUp'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 const router = createBrowserRouter([
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/sign-up',
-    element: <SignIn />
+    element: <SignUp />
   },
   {
     path: '/email-verification/:verificationToken',
