@@ -1,8 +1,9 @@
+import clsx from 'clsx'
 import { forwardRef, type ButtonHTMLAttributes } from 'react'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'sm' | 'base' | 'resizable'
-  color?: 'default'
+  color?: 'default' | 'light'
 }
 
 export const Button: React.FC<ButtonProps> = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -10,14 +11,16 @@ export const Button: React.FC<ButtonProps> = forwardRef<HTMLButtonElement, Butto
     return (
       <button
         className={
-          [
+          clsx(
             disabled === true ? 'opacity-65 cursor-not-allowed' : '',
-            'border border-neutral-800 rounded-sm p-1 hover:bg-neutral-800 hover:border-neutral-700 hover:drop-shadow-sm [transition-duration:0.1s] relative',
+            'border rounded-sm p-1 [transition-duration:0.1s] relative hover:drop-shadow-sm',
             className,
             size === 'sm' || size === 'base' ? '!flex items-center justify-center' : '',
             size === 'sm' ? 'h-[1.5625rem]' : '',
-            size === 'base' ? 'h-[2rem]' : ''
-          ].join(' ')
+            size === 'base' ? 'h-[2rem]' : '',
+            { 'hover:bg-neutral-800 hover:border-neutral-700 border-neutral-800': color === 'default' },
+            { 'bg-neutral-800 border-neutral-700 hover:bg-neutral-700 hover:border-neutral-600': color === 'light' }
+          )
         }
         {...{ ...props, disabled, ref }}
       >

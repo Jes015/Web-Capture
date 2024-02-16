@@ -1,5 +1,4 @@
-import { IconGithub } from '@/assets/Icons'
-import { AddWindowsDropdownMenu, CompatibilityWindow } from '@/components/feature'
+import { AddWindowsDropdownMenu, AppLogo, CompatibilityWindow } from '@/components/feature'
 import { type BaseComponentType } from '@/models'
 import { Analytics } from '@vercel/analytics/react'
 import { Toaster } from 'sonner'
@@ -8,22 +7,7 @@ export const MainLayout: BaseComponentType = ({ children }) => {
   return (
     <div className='flex flex-col [height:100svh] [font-family:Roboto] [font-weight:500]'>
       <CompatibilityWindow />
-      <div className='absolute z-[0] [height:100svh] [width:100svw] flex flex-col justify-center items-center'>
-        <div className='flex flex-col justify-center opacity-10'>
-          <span className='font-bold text-3xl sm:text-5xl  md:text-6xl pt-[0.18rem] select-none '>
-            WebCapture
-          </span>
-        </div>
-        <div className='flex gap-1'>
-          <a
-            href='https://github.com/Jes015/ScreenCapture'
-            target='_blank'
-            className='opacity-10 hover:opacity-80 [transition-duration:0.3s]'
-          >
-            <IconGithub className='   text-4xl' />
-          </a>
-        </div>
-      </div>
+      <AppLogo/>
       <AddWindowsDropdownMenu />
       <main className='h-full text-sm'>{children}</main>
       <Toaster richColors />
