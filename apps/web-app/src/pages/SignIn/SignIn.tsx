@@ -6,22 +6,22 @@ const SignIn = () => {
   return (
     <DividedLayout>
       <header>
-        <Title className='font-bold uppercase'>Sign in</Title>
+        <Title as='h2' className='font-bold uppercase'>Sign in</Title>
           <P className='text-sm' level='secondary'>
             Don't you have an account? <Anchor href={frontRoutes.signUp}>Sign Up</Anchor>
           </P>
       </header>
       <div className='mt-2'>
-        <form className='flex w-full flex-col' action="">
+        <form className='flex w-full flex-col gap-2' action="">
           <TextField>
-            <TextField.Label >Email</TextField.Label>
-            <Input className='w-full' placeholder='email@gmail.com' autoFocus />
+            <TextField.Label className='text-sm'>Email</TextField.Label>
+            <Input className='w-full h-10 rounded-lg' placeholder='loki@gmail.com' autoFocus />
           </TextField>
           <TextField>
-            <TextField.Label>Password</TextField.Label>
-            <Input className='w-full' placeholder='Password' type='password' />
+            <TextField.Label className='text-sm'>Password</TextField.Label>
+            <Input className='w-full h-10 rounded-lg' placeholder='waa34r' type='password' />
           </TextField>
-          <Button className='h-10 w-full mt-4' color='light'>Sign in</Button>
+          <Button size='xl' className='mt-1' color='light'>Sign in</Button>
         </form>
       </div>
       <footer

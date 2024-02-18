@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import { forwardRef, type ButtonHTMLAttributes } from 'react'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  size?: 'sm' | 'base' | 'resizable'
+  size?: 'sm' | 'base' | 'resizable' | 'xl'
   color?: 'default' | 'light'
 }
 
@@ -18,6 +18,7 @@ export const Button: React.FC<ButtonProps> = forwardRef<HTMLButtonElement, Butto
             size === 'sm' || size === 'base' ? '!flex items-center justify-center' : '',
             size === 'sm' ? 'h-[1.5625rem]' : '',
             size === 'base' ? 'h-[2rem]' : '',
+            size === 'xl' ? 'h-10 w-full rounded-lg' : '',
             { 'hover:bg-neutral-800 hover:border-neutral-700 border-neutral-800': color === 'default' },
             { 'bg-neutral-800 border-neutral-700 hover:bg-neutral-700 hover:border-neutral-600': color === 'light' }
           )
