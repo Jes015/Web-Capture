@@ -13,4 +13,5 @@ export const SchemaEnv = Joi.object({
   AUTH_RESEND_TOKEN_EXPIRATION: Joi.string().min(2).required(),
   RESEND_FROM_SUBJECT: Joi.string().min(2).required(),
   RESEND_FROM_EMAIL: Joi.string().min(4).required(),
+  WEB_APP_ORIGIN: Joi.string().uri().required(),
 }).required();
