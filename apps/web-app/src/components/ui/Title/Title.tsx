@@ -13,6 +13,7 @@ export const Title: React.FC<TitleProps> = ({ as, className, ...props }) => {
             className={
                 clsx(
                   { 'text-5xl': Component === 'h1' },
+                  { 'text-4xl': Component === 'h2' },
                   className
                 )
             }

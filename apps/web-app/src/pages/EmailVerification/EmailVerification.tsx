@@ -15,7 +15,7 @@ const EmailVerification = () => {
         <P level='primary'>
           Once you click the button, your account will be activated
         </P>
-        <Button className='h-10 w-full mt-4' color='light'>Verify account</Button>
+        <Button size='xl' className='mt-1' color='light'>Verify account</Button>
       </div>
       <footer
         className='mt-2 self-end'
