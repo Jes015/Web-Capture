@@ -2,9 +2,13 @@
     "$schema": "https://turbo.build/schema.json",
     "extends": ["//"],
     "pipeline": {
+        "upDB": {
+            "cache": false
+        },
         "dev": {
             "cache": false,
-            "persistent": true
+            "persistent": true,
+            "dependsOn": ["upDB"]
         }
     }
 }
