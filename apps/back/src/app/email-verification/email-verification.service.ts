@@ -95,7 +95,7 @@ export class EmailVerificationService {
     this.resendService.send({
       from: `${fromData.subject} ${fromData.email}`,
       to,
-      subject: 'Email verification - Screen capture',
+      subject: 'Email verification',
       html,
     });
   }

@@ -5,7 +5,7 @@ import { Auth } from './decorators';
 import { SignInDto, SignUpDto } from './dto';
 
 @Controller('auth')
-@Throttle({ default: { limit: 2, ttl: days(1) } })
+@Throttle({ default: { limit: 5, ttl: days(1) } })
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
