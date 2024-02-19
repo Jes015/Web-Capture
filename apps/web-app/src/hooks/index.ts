@@ -1,2 +1,3 @@
-export * from './useStopwatch'
+export * from './public/useGlobalAuth'
+export * from './public/useStopwatch'
 

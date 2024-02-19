@@ -1,3 +1,4 @@
+import { type useLocalAuth } from '@/hooks/private'
 import { type UUID } from 'crypto'
 
 export interface User {
@@ -9,4 +10,15 @@ export interface User {
   roles: string[]
 }
 
-export interface PublicUser extends Omit<User, 'password'> {}
+export interface PublicUser extends Omit<User, 'password'> { }
+
+export type AuthContext = ReturnType<typeof useLocalAuth>
+
+export const defaultUserValue = { email: 'user@gmail.com', id: crypto.randomUUID(), isActive: true, roles: ['user'], username: 'User bb' }
+
+export const defaultUserValues: AuthContext = {
+  user: defaultUserValue,
+  signIn: async () => { return new Promise(() => {}) },
+  signUp: async () => { return new Promise(() => {}) },
+  signOut: () => {}
+}

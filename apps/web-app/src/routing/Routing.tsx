@@ -1,25 +1,25 @@
-import EmailVerification from '@/pages/EmailVerification/EmailVerification'
-import Home from '@/pages/Home/Home'
-import SignIn from '@/pages/SignIn/SignIn'
-import SignUp from '@/pages/SignUp/signUp'
+import EmailVerificationPage from '@/pages/EmailVerification/EmailVerification'
+import HomePage from '@/pages/Home/Home'
+import SignInPage from '@/pages/SignIn/SignIn'
+import SignUpPage from '@/pages/SignUp/signUp'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />
+    element: <HomePage />
   },
   {
     path: '/sign-in',
-    element: <SignIn />
+    element: <SignInPage />
   },
   {
     path: '/sign-up',
-    element: <SignUp />
+    element: <SignUpPage />
   },
   {
     path: '/email-verification/:verificationToken',
-    element: <EmailVerification />
+    element: <EmailVerificationPage />
   }
 ])
 

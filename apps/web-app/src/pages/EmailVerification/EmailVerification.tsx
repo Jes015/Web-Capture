@@ -2,7 +2,7 @@ import { Anchor, Button, P, Title } from '@/components/ui'
 import { DividedLayout } from '@/layouts'
 import { useParams } from 'react-router-dom'
 
-const EmailVerification = () => {
+const EmailVerificationPage = () => {
   const { verificationToken } = useParams<'verificationToken'>()
   console.log({ verificationToken })
 
@@ -26,4 +26,4 @@ const EmailVerification = () => {
   )
 }
 
-export default EmailVerification
+export default EmailVerificationPage

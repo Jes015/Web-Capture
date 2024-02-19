@@ -1,6 +1,6 @@
 import { type BaseComponentProps } from '@/models'
 import clsx from 'clsx'
-import { TextFieldLabel } from './components'
+import { TextFieldError, TextFieldLabel } from './components'
 
 interface TextFieldProps extends BaseComponentProps {
   direction?: 'column' | 'row'
@@ -22,3 +22,4 @@ export const TextField = ({ children, className, direction = 'column' }: TextFie
 }
 
 TextField.Label = TextFieldLabel
+TextField.Error = TextFieldError

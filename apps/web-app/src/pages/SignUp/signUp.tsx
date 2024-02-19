@@ -2,7 +2,7 @@ import { Anchor, Button, Input, P, TextField, Title } from '@/components/ui'
 import { DividedLayout } from '@/layouts'
 import { frontRoutes } from '@/routing'
 
-const SignUp = () => {
+const SignUpPage = () => {
   return (
     <DividedLayout>
       <header>
@@ -32,4 +32,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default SignUpPage

@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { Throttle, days, seconds } from '@nestjs/throttler';
+import { Throttle, days, hours } from '@nestjs/throttler';
 import { AuthService } from './auth.service';
 import { Auth } from './decorators';
 import { SignInDto, SignUpDto } from './dto';
@@ -10,7 +10,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('signIn')
-  @Throttle({ default: { limit: 8, ttl: seconds(5) } })
+  @Throttle({ default: { limit: 20, ttl: hours(5) } })
   signIn(@Body() signInDto: SignInDto) {
     return this.authService.signIn(signInDto);
   }

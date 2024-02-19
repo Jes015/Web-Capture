@@ -13,7 +13,7 @@ const windowComponents = {
   [CWindowType.downloadRecord]: DownloadRecordingWindow
 } as const
 
-const Home = () => {
+const HomePage = () => {
   const { windows } = useWindowSystemStore((state) => ({ windows: state.windows, addWindow: state.addWindow }))
 
   return (
@@ -36,4 +36,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default HomePage

@@ -1,4 +1,4 @@
-import { getEnv } from '@/services/env.service'
+import { getEnv } from '@/services/others'
 
 export const frontRoutes = {
   home: '/',

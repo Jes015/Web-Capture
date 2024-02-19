@@ -1,5 +1,5 @@
 import { CWindowType } from '@/models'
-import { LoggerService } from '@/services/logger.service'
+import { LoggerService } from '@/services/others'
 import { useWindowSystemStore } from '@/services/store/zustand'
 import { CustomMediaRecorder, type RecordingType } from '@/utils/others'
 import { useCallback, useEffect, useRef, useState } from 'react'
