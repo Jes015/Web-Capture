@@ -10,3 +10,7 @@ export const signInService = async (userSignInDTO: UserSignInDTO) => {
 export const signUpService = async (userSignUpDTO: UserSignUpDTO) => {
   return await axios.post<AuthSuccessApi>(backRoutes.signUp, userSignUpDTO)
 }
+
+export const verifyEmailService = async (token: string) => {
+  return await axios.get(backRoutes.emailVerification(token))
+}

@@ -1,5 +1,5 @@
 import { defaultUserValue, type AuthSuccessApi, type PublicUser, type UserSignInDTO, type UserSignUpDTO } from '@/models'
-import { signInService, signUpService } from '@/services/others'
+import { signInService, signUpService, verifyEmailService } from '@/services/others'
 import { type AxiosResponse } from 'axios'
 import { useState } from 'react'
 
@@ -21,5 +21,11 @@ export const useLocalAuth = () => {
 
   const signOut = () => {}
 
-  return { user, signIn, signUp, signOut } as const
+  const verifyEmail = async (token: string) => {
+    const userData: AxiosResponse<AuthSuccessApi> = await verifyEmailService(token)
+
+    console.log({ userData })
+  }
+
+  return { user, signIn, signUp, signOut, verifyEmail } as const
 }

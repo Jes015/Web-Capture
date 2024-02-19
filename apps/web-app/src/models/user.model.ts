@@ -20,5 +20,6 @@ export const defaultUserValues: AuthContext = {
   user: defaultUserValue,
   signIn: async () => { return new Promise(() => {}) },
   signUp: async () => { return new Promise(() => {}) },
-  signOut: () => {}
+  signOut: () => {},
+  verifyEmail: async () => { return new Promise(() => {}) }
 }

@@ -15,6 +15,7 @@ export const backRoutes = (() => {
   return ({
     home: baseRoute,
     signIn: baseRoute + 'auth/signIn',
-    signUp: baseRoute + 'auth/signUp'
+    signUp: baseRoute + 'auth/signUp',
+    emailVerification: (token: string) => baseRoute + 'email-verification/' + token
   })
 })()
