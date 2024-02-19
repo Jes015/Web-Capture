@@ -18,7 +18,8 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     'no-multiple-empty-lines': 'off',
     '@typescript-eslint/return-await': 'off',
-    '@typescript-eslint/unbound-method': 'off'
+    '@typescript-eslint/unbound-method': 'off',
+    '@typescript-eslint/no-misused-promises': 'off'
   },
   ignorePatterns: ["vite.config.ts", "vite-env.d.ts", "playwright.config.ts"]
 }

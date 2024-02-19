@@ -65,9 +65,8 @@ export class AuthService {
   }
 
   public async sendUserEmailValidation(data: SignUpDto) {
-    const userFound = await this.userRepository.findOneBy({
-      email: data.email,
-      username: data.username,
+    const userFound = await this.userRepository.findOne({
+      where: [{ email: data.email }, { username: data.username }],
     });
 
     if (userFound != null) {

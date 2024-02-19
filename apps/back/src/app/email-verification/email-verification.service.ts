@@ -48,7 +48,7 @@ export class EmailVerificationService {
       });
       await this.unverifiedEmailRepository.save(unverifiedEmail);
 
-      let validationLink = 'https://screen-capture-nine.vercel.app/';
+      let validationLink = `${this.configService.getOrThrow<string>('WEB_APP_ORIGIN')}/email-verification/`;
       validationLink += await this.jwtService.signAsync(
         createUnverifiedEmailDto,
       );
@@ -95,7 +95,7 @@ export class EmailVerificationService {
     this.resendService.send({
       from: `${fromData.subject} ${fromData.email}`,
       to,
-      subject: 'Email verification - Screen capture',
+      subject: 'Email verification',
       html,
     });
   }

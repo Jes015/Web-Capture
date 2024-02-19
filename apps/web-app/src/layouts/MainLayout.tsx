@@ -1,7 +1,5 @@
 import { AddWindowsDropdownMenu, AppLogo, CompatibilityWindow } from '@/components/feature'
 import { type BaseComponentType } from '@/models'
-import { Analytics } from '@vercel/analytics/react'
-import { Toaster } from 'sonner'
 
 export const MainLayout: BaseComponentType = ({ children }) => {
   return (
@@ -10,8 +8,6 @@ export const MainLayout: BaseComponentType = ({ children }) => {
       <AppLogo/>
       <AddWindowsDropdownMenu />
       <main className='h-full text-sm'>{children}</main>
-      <Toaster richColors />
-      <Analytics />
     </div>
   )
 }
