@@ -78,6 +78,16 @@ export class AuthService {
     return await this.emailVerificationService.startEmailVerification(data);
   }
 
+  public async checkUser(key: 'username' | 'email', value: string) {
+    const userFound = await this.userRepository.findOneBy({ [key]: value });
+
+    if (userFound != null) {
+      throw new ConflictException(`${value} already exits`);
+    }
+
+    return 'OK';
+  }
+
   private async getUserAndJwt(user: User) {
     const publicUserData: Partial<User> = structuredClone(user);
 
