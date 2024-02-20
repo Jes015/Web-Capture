@@ -45,6 +45,7 @@ export class EmailVerificationService {
 
       const unverifiedEmail = this.unverifiedEmailRepository.create({
         email: createUnverifiedEmailDto.email,
+        username: createUnverifiedEmailDto.username,
       });
       await this.unverifiedEmailRepository.save(unverifiedEmail);
 

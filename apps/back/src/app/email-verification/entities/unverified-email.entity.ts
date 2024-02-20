@@ -11,6 +11,11 @@ export class UnverifiedEmail {
   })
   email: string;
 
+  @Column('text', {
+    unique: true,
+  })
+  username: string;
+
   @Column('bigint', {
     default: new Date().getTime(),
   })
