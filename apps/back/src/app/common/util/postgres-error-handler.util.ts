@@ -4,7 +4,6 @@ import {
 } from '@nestjs/common';
 
 export const postgresErrorHandler = (error: any) => {
-  console.error(error);
   const errorMessage = error?.detail ?? 'Unknown error';
   const errorClass =
     DB_ERROR_EXCEPTIONS?.[error.code] ?? InternalServerErrorException;
