@@ -1,6 +1,7 @@
 import { Anchor, Button, P, Title } from '@/components/ui'
 import { useGlobalAuth, useRouting } from '@/hooks'
 import { DividedLayout } from '@/layouts'
+import { StatusCodes } from '@/models'
 import { frontRoutes } from '@/routing'
 import { toast } from '@/utils/others'
 import { isAxiosError } from 'axios'
@@ -23,11 +24,11 @@ const EmailVerificationPage = () => {
         if (isAxiosError(error)) {
           const errorStatusCode = error?.response?.data?.statusCode
 
-          if (errorStatusCode === 404) {
+          if (errorStatusCode === StatusCodes.NotFound) {
             toast.message('This email and user has not been signed up', 'error')
-          } else if (errorStatusCode === 401) {
+          } else if (errorStatusCode === StatusCodes.Forbidden) {
             toast.message('The verification link has expired or it is invalid. Try signing up again', 'error')
-          } else if (errorStatusCode === 429) {
+          } else if (errorStatusCode === StatusCodes.TooManyRequests) {
             toast.message('You\'ve reached the attempt limit. Try again in 1 second.', 'warning')
           }
         }

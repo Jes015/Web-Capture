@@ -1,3 +1,4 @@
+import { type CheckUserTypeParams } from '@/models'
 import { getEnv } from '@/services/others'
 
 export const frontRoutes = {
@@ -16,6 +17,7 @@ export const backRoutes = (() => {
     home: baseRoute,
     signIn: baseRoute + 'auth/signIn',
     signUp: baseRoute + 'auth/signUp',
-    emailVerification: (token: string) => baseRoute + 'email-verification/' + token
+    emailVerification: (token: string) => baseRoute + 'email-verification/' + token,
+    checkUserData: (key: CheckUserTypeParams) => baseRoute + `auth/check/${key}/`
   })
 })()
