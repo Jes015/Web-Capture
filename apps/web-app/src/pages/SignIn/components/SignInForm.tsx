@@ -1,7 +1,7 @@
 import { FormTextField } from '@/components/feature'
 import { Button } from '@/components/ui'
 import { useGlobalAuth } from '@/hooks'
-import { type BaseComponentType, type UserSignInDTO } from '@/models'
+import { StatusCodes, type BaseComponentType, type UserSignInDTO } from '@/models'
 import { toast } from '@/utils/others'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { isAxiosError } from 'axios'
@@ -29,9 +29,9 @@ export const SignInForm: BaseComponentType = () => {
       } catch (error) {
         if (isAxiosError(error)) {
           const errorStatusCode = error?.response?.data?.statusCode
-          if (errorStatusCode === 429) {
+          if (errorStatusCode === StatusCodes.TooManyRequests) {
             toast.message('You\'ve reached the sign-in attempt limit. Try again in 5 hours.', 'warning')
-          } else if (errorStatusCode === 401) {
+          } else if (errorStatusCode === StatusCodes.Forbidden) {
             toast.message('Invalid email or password', 'error')
           }
         } else {
