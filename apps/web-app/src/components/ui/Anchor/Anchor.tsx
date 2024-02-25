@@ -13,6 +13,7 @@ export const Anchor: FC<AnchorProps> = ({ className, ...props }) => {
           className
         )
       }
+      rel='noopener noreferrer'
       {...props}
     />
   )
