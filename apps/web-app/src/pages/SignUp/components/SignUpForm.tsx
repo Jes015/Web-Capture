@@ -29,12 +29,7 @@ export const SignUpForm: BaseComponentType = () => {
             toast.message('You\'ve reached the sign-up attempt limit. Try again in 1 day.', 'warning')
           } else if (errorStatusCode === StatusCodes.Conflict) {
             toast.message('Email or username already exits', 'error')
-          } else {
-            console.log(error)
-            toast.message('Something went wrong', 'error')
           }
-        } else {
-          toast.message('Something went wrong', 'error')
         }
       }
     }

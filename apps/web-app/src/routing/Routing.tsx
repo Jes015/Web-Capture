@@ -1,9 +1,12 @@
+import { setUpAxiosConfig } from '@/config'
 import EmailVerificationPage from '@/pages/EmailVerification/EmailVerification'
 import HomePage from '@/pages/Home/Home'
 import RootPage from '@/pages/Root/Root'
 import SignInPage from '@/pages/SignIn/SignIn'
 import SignUpPage from '@/pages/SignUp/signUp'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+
+setUpAxiosConfig()
 
 const router = createBrowserRouter([
   {

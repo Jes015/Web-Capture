@@ -34,8 +34,6 @@ export const SignInForm: BaseComponentType = () => {
           } else if (errorStatusCode === StatusCodes.Forbidden) {
             toast.message('Invalid email or password', 'error')
           }
-        } else {
-          toast.message('Something went wrong', 'error')
         }
       }
     }
