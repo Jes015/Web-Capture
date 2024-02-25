@@ -5,17 +5,20 @@ import { Item } from './components'
 
 interface DropdownMenuProps extends BaseComponentProps {
   triggerContent: React.ReactNode
+  triggerClassName?: string
 }
 
-export const DropdownMenu = ({ children, triggerContent }: DropdownMenuProps) => {
+export const DropdownMenu = ({ children, triggerContent, triggerClassName, id }: DropdownMenuProps) => {
   return (
         <Root>
             <Trigger
                 asChild
                 className='outline-none'
+                {...{ id }}
             >
                 <Button
-                    aria-label="Customize options"
+                    className={triggerClassName}
+                    aria-label="Open menu"
                 >
                     {triggerContent}
                 </Button>

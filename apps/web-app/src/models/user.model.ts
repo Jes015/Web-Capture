@@ -14,7 +14,7 @@ export interface PublicUser extends Omit<User, 'password'> { }
 
 export type AuthContext = ReturnType<typeof useLocalAuth>
 
-export const defaultUserValue = { email: 'user@gmail.com', id: crypto.randomUUID(), isActive: true, roles: ['user'], username: 'User bb' }
+export const defaultUserValue = { email: 'user@gmail.com', id: crypto.randomUUID(), isActive: true, roles: ['default'], username: 'default' }
 
 export const defaultUserValues: AuthContext = {
   user: defaultUserValue,
