@@ -1,17 +1,16 @@
 import EmailVerificationPage from '@/pages/EmailVerification/EmailVerification'
 import HomePage from '@/pages/Home/Home'
+import RootPage from '@/pages/Root/Root'
 import SignInPage from '@/pages/SignIn/SignIn'
 import SignUpPage from '@/pages/SignUp/signUp'
-import { UserProvider } from '@/services/store/context/user'
-import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <UserProvider><Outlet /></UserProvider>,
+    element: <RootPage />,
     children: [
       {
-        path: 'home',
+        path: '/',
         element: <HomePage />
       },
       {
