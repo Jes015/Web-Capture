@@ -1,11 +1,11 @@
-import { MainLayout } from '@/layouts'
 import { CWindowType } from '@/models'
+import { MainLayout } from '@/pages/Home/layouts'
 import { useWindowSystemStore } from '@/services/store/zustand'
 import { Suspense, lazy } from 'react'
 
-const RecordingWindow = lazy(async () => import('@/components/feature/RecordingWindow/RecordingWindow'))
-const WatchRecordingWindow = lazy(async () => import('@/components/feature/WatchRecordingWindow/WatchRecordingWindow'))
-const DownloadRecordingWindow = lazy(async () => import('@/components/feature/DownloadRecordingWindow/DownloadRecordingWindow'))
+const RecordingWindow = lazy(async () => import('@/pages/Home/components/feature/RecordingWindow/RecordingWindow'))
+const WatchRecordingWindow = lazy(async () => import('@/pages/Home/components/feature/WatchRecordingWindow/WatchRecordingWindow'))
+const DownloadRecordingWindow = lazy(async () => import('@/pages/Home/components/feature/DownloadRecordingWindow/DownloadRecordingWindow'))
 
 const windowComponents = {
   [CWindowType.record]: RecordingWindow,
