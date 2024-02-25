@@ -1,7 +1,8 @@
 .driver-popover.driverjs-theme {
     color: white;
-    border: 0.1em solid rgb(38, 38, 38);
-    background-color: #37a1a1;
+    border: 0.1em solid rgb(64, 64, 64);
+    background-color: #262626;
+    border-radius: 0.75rem;
     background-image: url("data:image/svg+xml,%3Csvg width='40' height='12' viewBox='0 0 40 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 6.172L6.172 0h5.656L0 11.828V6.172zm40 5.656L28.172 0h5.656L40 6.172v5.656zM6.172 12l12-12h3.656l12 12h-5.656L20 3.828 11.828 12H6.172zm12 0L20 10.172 21.828 12h-3.656z' fill='%23262626' fill-opacity='0.09' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
 
@@ -23,18 +24,17 @@
     justify-content: center;
     align-items: center;
     padding: 0.2em;
-    border: 0.1em solid rgb(38, 38, 38);
+    border: 0.1em solid rgb(64, 64, 64);
     border-radius: 0.42857142857em;
     color: white;
-    background-color: var(--button-background-color) !important;
+    background-color: var(--button-background-color);
     cursor: pointer;
     text-shadow: none;
     padding: 0.5em;
 }
 
 .driver-popover.driverjs-theme button:hover {
-    background-color: rgb(38, 38, 38);
-    border-color: rgb(64 64 64);
+    background-color: rgb(64, 64, 64);
 }
 
 .driver-popover.driverjs-theme .driver-popover-navigation-btns {
@@ -44,10 +44,14 @@
 .driver-popover.driverjs-theme .driver-popover-close-btn {
     color: white;
     border: none;
+    scale: 150%;
+    transition-property: scale;
+    transition-duration: 0.3s;
 }
 
 .driver-popover.driverjs-theme .driver-popover-close-btn:hover {
-    color: rgb(85, 85, 85);
+    background-color: transparent;
+    scale: 170%;
 }
 
 .driver-popover.driverjs-theme .driver-popover-arrow-side-left.driver-popover-arrow {
