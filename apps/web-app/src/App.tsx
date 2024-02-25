@@ -1,11 +1,10 @@
 import { Analytics } from '@vercel/analytics/react'
 import { Toaster } from 'sonner'
 import { Routing } from './routing'
-import { UserProvider } from './services/store/context/user'
 
 function App () {
   return (
-    <UserProvider>
+    <>
       <Routing />
       <Toaster
         duration={10000}
@@ -22,7 +21,7 @@ function App () {
         }}
       />
       <Analytics />
-    </UserProvider>
+    </>
   )
 }
 

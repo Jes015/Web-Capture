@@ -6,7 +6,7 @@ import { useWindowSystemStore } from '@/services/store/zustand'
 
 export const AddWindowsDropdownMenu = () => {
   const [addWindow] = useWindowSystemStore((state) => [state.addWindow])
-  const { user } = useGlobalAuth()
+  const { user, signOut } = useGlobalAuth()
 
   const handleOnClickToAddScreenRecordingWindow = () => {
     addWindow({ id: crypto.randomUUID(), name: 'Screen recording', type: CWindowType.record, recordingCoreType: 'screen' })
@@ -14,6 +14,10 @@ export const AddWindowsDropdownMenu = () => {
 
   const handleOnClickToAddWebcamRecordingWindow = () => {
     addWindow({ id: crypto.randomUUID(), name: 'Webcam recording', type: CWindowType.record, recordingCoreType: 'web-cam' })
+  }
+
+  const handleOnClickToSignOut = () => {
+    signOut()
   }
 
   return (
@@ -31,14 +35,14 @@ export const AddWindowsDropdownMenu = () => {
                         triggerClassName='hover:!bg-neutral-700 overflow-hidden !p-2 rounded-none flex gap-1 items-center text-xs border-l border-r-0 border-y-0 p-2 !border-neutral-700 hover:bg-neutral-700 overflow-hidden relative transition-colors'
                         triggerContent={
                             <>
-                                <span className='font-bold'>Jes015</span>
-                                <img className='rounded-full w-8 aspect-square' src='https://avatar.vercel.sh/jes015' />
-                                <img className='absolute right-2 blur-sm rounded-full w-8 aspect-square z-[-20]' src='https://avatar.vercel.sh/jes015' />
+                                <span className='font-semibold'>{user.username}</span>
+                                <img className='rounded-full w-7 aspect-square' src='https://avatar.vercel.sh/jes015' />
+                                <img className='absolute right-2 blur-sm rounded-full w-7 aspect-square z-[-20]' src='https://avatar.vercel.sh/jes015' />
                             </>
                         }
                     >
                         <DropdownMenu.Content contentStyles='main-menu'>
-                            <DropdownMenu.Item>
+                            <DropdownMenu.Item onClick={handleOnClickToSignOut}>
                                 Sign out
                             </DropdownMenu.Item>
                         </DropdownMenu.Content>

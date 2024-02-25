@@ -2,7 +2,7 @@ import { type CheckUserTypeParams } from '@/models'
 import { getEnv } from '@/services/others'
 
 export const frontRoutes = {
-  home: '/',
+  home: '/home',
   signIn: '/sign-in',
   signUp: '/sign-up',
   emailVerification: {
