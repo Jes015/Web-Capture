@@ -12,7 +12,7 @@ export const Item: React.FC<ItemProps> = ({ className, children, clickable = tru
       <DefaultItem
         className={
           [
-            'leading-none flex items-center p-2 relative select-none outline-none hover:bg-neutral-800',
+            'leading-none flex items-center p-2 relative select-none outline-none hover:bg-neutral-700',
             className
           ].join(' ')
         }
@@ -27,7 +27,7 @@ export const Item: React.FC<ItemProps> = ({ className, children, clickable = tru
     <div
       className={
         [
-          'leading-none flex items-center p-2 relative select-none outline-none hover:bg-neutral-800',
+          'leading-none flex items-center p-2 relative select-none outline-none hover:bg-neutral-700',
           className
         ].join(' ')
       }
