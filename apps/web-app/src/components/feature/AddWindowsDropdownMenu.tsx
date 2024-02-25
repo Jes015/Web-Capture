@@ -37,9 +37,11 @@ export const AddWindowsDropdownMenu = () => {
                             </>
                         }
                     >
-                        <DropdownMenu.Item>
-                            Sign out
-                        </DropdownMenu.Item>
+                        <DropdownMenu.Content contentStyles='main-menu'>
+                            <DropdownMenu.Item>
+                                Sign out
+                            </DropdownMenu.Item>
+                        </DropdownMenu.Content>
                     </DropdownMenu>
             }
             <DropdownMenu
@@ -49,16 +51,18 @@ export const AddWindowsDropdownMenu = () => {
                     <span className='size-6 rounded text-sm'>Windows</span>
                 }
             >
-                <DropdownMenu.Item
-                    onClick={handleOnClickToAddScreenRecordingWindow}
-                >
-                    Screen | Tab | Window
-                </DropdownMenu.Item>
-                <DropdownMenu.Item
-                    onClick={handleOnClickToAddWebcamRecordingWindow}
-                >
-                    Web cam
-                </DropdownMenu.Item>
+                <DropdownMenu.Content contentStyles='main-menu'>
+                    <DropdownMenu.Item
+                        onClick={handleOnClickToAddScreenRecordingWindow}
+                    >
+                        Screen | Tab | Window
+                    </DropdownMenu.Item>
+                    <DropdownMenu.Item
+                        onClick={handleOnClickToAddWebcamRecordingWindow}
+                    >
+                        Web cam
+                    </DropdownMenu.Item>
+                </DropdownMenu.Content>
             </DropdownMenu>
         </div>
   )

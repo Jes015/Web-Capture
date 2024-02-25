@@ -1,7 +1,7 @@
-import { Button, Sheet } from '@/components/ui'
+import { Button } from '@/components/ui'
 import { type BaseComponentProps } from '@/models'
-import { Content, Portal, Root, Trigger } from '@radix-ui/react-dropdown-menu'
-import { Item } from './components'
+import { Portal, Root, Trigger } from '@radix-ui/react-dropdown-menu'
+import { Content, Item } from './components'
 
 interface DropdownMenuProps extends BaseComponentProps {
   triggerContent: React.ReactNode
@@ -25,24 +25,13 @@ export const DropdownMenu = ({ children, triggerContent, triggerClassName, id }:
             </Trigger>
 
             <Portal>
-                <Content
-                    align='end'
-                    className='mt-[0.1rem]'
-                    style={{
-                      zIndex: 1000000000000
-                    }}
-                >
-                    <Sheet
-                        className='rounded-sm text-white text-xs'
-                    >
-                        {children}
-                    </Sheet>
-                </Content>
+                {children}
             </Portal>
         </Root>
   )
 }
 
 DropdownMenu.Item = Item
+DropdownMenu.Content = Content
 
 export default DropdownMenu
