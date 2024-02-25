@@ -36,11 +36,12 @@ export const AddWindowsDropdownMenu = () => {
                                 <img className='absolute right-2 blur-sm rounded-full w-8 aspect-square z-[-20]' src='https://avatar.vercel.sh/jes015' />
                             </>
                         }
-                        contentStyles='main-menu'
                     >
-                        <DropdownMenu.Item>
-                            Sign out
-                        </DropdownMenu.Item>
+                        <DropdownMenu.Content contentStyles='main-menu'>
+                            <DropdownMenu.Item>
+                                Sign out
+                            </DropdownMenu.Item>
+                        </DropdownMenu.Content>
                     </DropdownMenu>
             }
             <DropdownMenu
@@ -49,18 +50,19 @@ export const AddWindowsDropdownMenu = () => {
                 triggerContent={
                     <span className='size-6 rounded text-sm'>Windows</span>
                 }
-                contentStyles='main-menu'
             >
-                <DropdownMenu.Item
-                    onClick={handleOnClickToAddScreenRecordingWindow}
-                >
-                    Screen | Tab | Window
-                </DropdownMenu.Item>
-                <DropdownMenu.Item
-                    onClick={handleOnClickToAddWebcamRecordingWindow}
-                >
-                    Web cam
-                </DropdownMenu.Item>
+                <DropdownMenu.Content contentStyles='main-menu'>
+                    <DropdownMenu.Item
+                        onClick={handleOnClickToAddScreenRecordingWindow}
+                    >
+                        Screen | Tab | Window
+                    </DropdownMenu.Item>
+                    <DropdownMenu.Item
+                        onClick={handleOnClickToAddWebcamRecordingWindow}
+                    >
+                        Web cam
+                    </DropdownMenu.Item>
+                </DropdownMenu.Content>
             </DropdownMenu>
         </div>
   )
