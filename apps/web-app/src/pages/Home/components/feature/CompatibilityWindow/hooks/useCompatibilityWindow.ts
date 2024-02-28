@@ -1,3 +1,4 @@
+import { showDriver } from '@/utils/others'
 import { useEffect, useState } from 'react'
 import { defaultCompatibilityValues, type CompatibilityType } from '../models'
 
@@ -14,6 +15,10 @@ export const useCompatibilityWindow = () => {
     setCompatibility(newCompatibilityValues)
 
     const shouldShowWindow = Object.values(newCompatibilityValues).some(value => !value)
+
+    if (!shouldShowWindow) {
+      showDriver()
+    }
 
     setShowWindow(shouldShowWindow)
   }, [])
