@@ -1,4 +1,5 @@
 import { IconCheckCircle, IconCloseCircle } from '@/assets/Icons'
+import { Table } from '@/components/ui'
 import { showDriver } from '@/utils/others'
 import { useCompatibilityWindow } from './hooks'
 
@@ -33,24 +34,26 @@ export const CompatibilityWindow = () => {
                 </header>
 
                 <div className='flex flex-col items-center'>
-                    <table className='border border-neutral-700 border-b-0'>
-                        <thead>
-                            <tr>
-                                <th className='p-1 border-b border-b-neutral-700' scope="col">Functionality</th>
-                                <th className='p-1 border-b border-b-neutral-700' scope="col">Available</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <Table>
+                        <Table.Head>
+                            <Table.Row>
+                                <Table.Cell as='th'>Functionality</Table.Cell>
+                                <Table.Cell as='th'>Available</Table.Cell>
+                            </Table.Row>
+                        </Table.Head>
+                        <Table.Body>
                             {
                                 Object.entries(compatibility).map(([key, value]) => (
-                                    <tr className='border-b border-b-neutral-700' key={key}>
-                                        <td className='p-1 text-sm'>{key}</td>
-                                        <td className='p-1 flex justify-center'>{value ? <IconCheckCircle className='text-green-400 text-base' /> : <IconCloseCircle className='text-red-500 text-xl' />}</td>
-                                    </tr>
+                                    <Table.Row key={key}>
+                                        <Table.Cell as='td'>{key}</Table.Cell>
+                                        <Table.Cell as='td' className='flex justify-center'>
+                                            {value ? <IconCheckCircle className='text-green-400 text-base' /> : <IconCloseCircle className='text-red-500 text-xl' />}
+                                        </Table.Cell>
+                                    </Table.Row>
                                 ))
                             }
-                        </tbody>
-                    </table>
+                        </Table.Body>
+                    </Table>
                 </div>
 
                 <footer className='flex flex-col items-center'>

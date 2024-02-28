@@ -14,7 +14,7 @@ export const frontRoutes = {
 export const backRoutes = (() => {
   const baseRoute = getEnv('VITE_BACK_HOST')
   return ({
-    home: baseRoute,
+    home: baseRoute as string,
     signIn: baseRoute + 'auth/signIn',
     signUp: baseRoute + 'auth/signUp',
     emailVerification: (token: string) => baseRoute + 'email-verification/' + token,

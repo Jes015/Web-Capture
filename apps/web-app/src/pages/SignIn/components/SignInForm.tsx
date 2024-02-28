@@ -15,6 +15,7 @@ export const SignInForm: BaseComponentType = () => {
     register,
     handleSubmit,
     formState: {
+      isSubmitting,
       errors
     }
   } = useForm<UserSignInDTO>({
@@ -63,7 +64,7 @@ export const SignInForm: BaseComponentType = () => {
           type: 'password'
         }}
       />
-      <Button size='xl' className='mt-1 !rounded-lg' color='light'>Sign in</Button>
+      <Button disabled={isSubmitting} size='xl' className='mt-1 !rounded-lg' color='light'>Sign in</Button>
     </form>
   )
 }
