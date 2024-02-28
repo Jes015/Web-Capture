@@ -1,5 +1,5 @@
 import { checkServerStatusService } from '@/services/others'
-import { toast } from '@/utils/others'
+import { showDriver, toast } from '@/utils/others'
 import { useEffect, useState } from 'react'
 
 export const useCheckServerStatus = () => {
@@ -11,6 +11,7 @@ export const useCheckServerStatus = () => {
       await checkServerStatusService()
         .then(() => {
           setIsOnline(true)
+          showDriver()
           toast.message('The servers is online', 'success')
           abortRequests = true
         })
