@@ -70,7 +70,7 @@ export const SignUpForm: BaseComponentType = () => {
             type: 'password'
           }}
         />
-        <Button size='xl' className='mt-1 !rounded-lg' color='light'>Sign Up</Button>
+        <Button disabled={formMethods.formState.isSubmitting} size='xl' className='mt-1 !rounded-lg' color='light'>Sign Up</Button>
       </form>
     </FormProvider>
   )
