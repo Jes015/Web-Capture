@@ -21,6 +21,9 @@ export const useCheckServerStatus = () => {
 
           if (errorStatusCode === 404) {
             setIsOnline(true)
+            showDriver()
+            toast.message('The servers is online', 'success')
+            abortRequests = true
             return
           }
 
