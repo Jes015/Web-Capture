@@ -45,7 +45,7 @@ export const useLocalAuth = () => {
 
   const setValuesAndRedirectToHome = (userRequest: AxiosResponse<AuthSuccessApi>) => {
     const user = userRequest.data.user
-    const token = userRequest.data.accessToken
+    const token = userRequest.data.token
     setUser(user)
     setToStorage(appConfig.localStorageKeys.token, token, 'localStorage')
     setToStorage(appConfig.localStorageKeys.user, JSON.stringify(user), 'localStorage')

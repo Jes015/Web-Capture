@@ -1,7 +1,7 @@
 export const appConfig = {
   name: 'WebCapture',
   localStorageKeys: {
-    token: 'auth-token',
+    token: 'token',
     user: 'user-data'
   },
   links: {

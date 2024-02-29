@@ -1,7 +1,7 @@
 import { type PublicUser } from '@/models'
 
 export interface AuthSuccessApi {
-  accessToken: string
+  token: string
   user: PublicUser
 }
 
