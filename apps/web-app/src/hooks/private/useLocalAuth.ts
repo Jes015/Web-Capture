@@ -13,9 +13,10 @@ export const useLocalAuth = () => {
   const { goTo } = useRouting()
 
   useLayoutEffect(() => {
-    const userData = getFromStorage<PublicUser>(appConfig.localStorageKeys.token, 'localStorage')
+    const userData = getFromStorage<PublicUser>(appConfig.localStorageKeys.user, 'localStorage')
+    const accessToken = getFromStorage<string>(appConfig.localStorageKeys.token, 'localStorage')
 
-    if (userData == null) return
+    if (userData == null || accessToken == null) return
 
     setUser(userData)
   }, [])
@@ -23,7 +24,7 @@ export const useLocalAuth = () => {
   const signIn = async (userSignInDTO: UserSignInDTO) => {
     const userData: AxiosResponse<AuthSuccessApi> = await signInService(userSignInDTO)
 
-    setUserAndRedirectToHome(userData)
+    setValuesAndRedirectToHome(userData)
   }
 
   const signUp = async (userSignUpDTO: UserSignUpDTO) => {
@@ -33,18 +34,21 @@ export const useLocalAuth = () => {
   const signOut = () => {
     setUser(defaultUserValue)
     removeFromStorage(appConfig.localStorageKeys.token, 'localStorage')
+    removeFromStorage(appConfig.localStorageKeys.user, 'localStorage')
   }
 
   const verifyEmail = async (token: string) => {
     const userData: AxiosResponse<AuthSuccessApi> = await verifyEmailService(token)
 
-    setUserAndRedirectToHome(userData)
+    setValuesAndRedirectToHome(userData)
   }
 
-  const setUserAndRedirectToHome = (userRequest: AxiosResponse<AuthSuccessApi>) => {
+  const setValuesAndRedirectToHome = (userRequest: AxiosResponse<AuthSuccessApi>) => {
     const user = userRequest.data.user
+    const token = userRequest.data.accessToken
     setUser(user)
-    setToStorage(appConfig.localStorageKeys.token, JSON.stringify(user), 'localStorage')
+    setToStorage(appConfig.localStorageKeys.token, token, 'localStorage')
+    setToStorage(appConfig.localStorageKeys.user, JSON.stringify(user), 'localStorage')
     goTo(frontRoutes.home)
   }
 
