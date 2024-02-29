@@ -3,7 +3,7 @@ import { useRouting } from '@/hooks'
 import { defaultUserValue, type AuthSuccessApi, type PublicUser, type UserSignInDTO, type UserSignUpDTO } from '@/models'
 import { frontRoutes } from '@/routing'
 import { signInService, signUpService, verifyEmailService } from '@/services/others'
-import { getFromStorage, removeFromStorage, setToStorage } from '@/utils/others'
+import { getFromStorageObject, removeFromStorage, setToStorage } from '@/utils/others'
 import { type AxiosResponse } from 'axios'
 import { useLayoutEffect, useState } from 'react'
 
@@ -13,8 +13,8 @@ export const useLocalAuth = () => {
   const { goTo } = useRouting()
 
   useLayoutEffect(() => {
-    const userData = getFromStorage<PublicUser>(appConfig.localStorageKeys.user, 'localStorage')
-    const accessToken = getFromStorage<string>(appConfig.localStorageKeys.token, 'localStorage')
+    const userData = getFromStorageObject<PublicUser>(appConfig.localStorageKeys.user, 'localStorage')
+    const accessToken = getFromStorageObject<string>(appConfig.localStorageKeys.token, 'localStorage', 'string')
 
     if (userData == null || accessToken == null) return
 
