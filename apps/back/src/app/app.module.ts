@@ -16,7 +16,7 @@ import { UserModule } from './user/user.module';
       validationSchema: SchemaEnv,
     }),
     TypeOrmModule.forRoot({
-      ssl: true,
+      ssl: process.env.DB_SSL === 'true',
       type: 'postgres',
       database: process.env.DB_NAME,
       username: process.env.DB_USERNAME,

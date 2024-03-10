@@ -6,6 +6,7 @@ export const SchemaEnv = Joi.object({
   DB_PASSWORD: Joi.string().min(9).required(),
   DB_HOST: Joi.string().required(),
   DB_PORT: Joi.number().default(5432).required(),
+  DB_SSL: Joi.boolean().default('true'),
   AUTH_SECRET: Joi.string().min(20).required(),
   AUTH_EXPIRES: Joi.string().min(2).required(),
   AUTH_RESEND_API_KEY: Joi.string().min(10).required(),
