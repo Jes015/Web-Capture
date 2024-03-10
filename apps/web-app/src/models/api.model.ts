@@ -5,6 +5,10 @@ export interface AuthSuccessApi {
   user: PublicUser
 }
 
+export interface NotFoundApi {
+  code: 404
+}
+
 export type ApiOK = 'OK'
 
 export const StatusCodes = {
