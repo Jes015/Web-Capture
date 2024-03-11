@@ -6,7 +6,7 @@ export interface AuthSuccessApi {
 }
 
 export interface NotFoundApi {
-  code: 404
+  statusCode: 404
 }
 
 export type ApiOK = 'OK'

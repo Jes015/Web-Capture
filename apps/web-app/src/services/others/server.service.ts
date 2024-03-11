@@ -1,6 +1,20 @@
+import { type NotFoundApi } from '@/models'
 import { backRoutes } from '@/routing'
-import axios from 'axios'
+import axios, { type AxiosError } from 'axios'
 
 export const checkServerStatusService = async () => {
-  await axios.get(backRoutes.home ?? '/')
+  return await new Promise((resolve, reject) => {
+    axios.get(backRoutes.home ?? '/').then(() => {
+      resolve('OK')
+    }).catch((error: AxiosError<NotFoundApi>) => {
+      const statusCode = error.response?.data.statusCode
+
+      if (statusCode === 404) {
+        resolve('OK')
+        return
+      }
+
+      reject(new Error('Something went wrong'))
+    })
+  })
 }
