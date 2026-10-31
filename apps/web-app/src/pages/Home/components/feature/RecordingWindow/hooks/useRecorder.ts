@@ -80,12 +80,15 @@ export const useRecorder = (recordingType: RecordingType) => {
 
     void mediaRecorder.current?.removeOnStopStreaming(cachedOnStopStreaming)
 
-    void mediaRecorder.current.stopStreaming()
-    void mediaRecorder.current.stopRecording()
+    await mediaRecorder.current.stopRecording()
+    await mediaRecorder.current.stopStreaming()
 
     const streamBlob = await getVideoAndAudioBlob()
 
-    if (streamBlob == null) return
+    if (streamBlob == null || streamBlob.size === 0) {
+      setError('Something went wrong: video blob is empty')
+      return
+    }
 
     // Opens a new window to watch the video recorded
     addWindow({ name: 'Watch recording', type: CWindowType.watchRecord, videoAndAudioBlob: streamBlob, id: crypto.randomUUID() })

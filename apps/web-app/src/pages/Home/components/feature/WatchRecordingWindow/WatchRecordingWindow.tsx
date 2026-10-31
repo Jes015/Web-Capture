@@ -22,12 +22,11 @@ export const WatchRecordingWindow: React.FC<WatchRecordingWindowProps> = ({ wind
         default: {
           x: 0,
           y: 0,
-          width: 500,
-          height: 320
+          width: 640,
+          height: 360
         },
         minWidth: 251,
-        maxWidth: 500,
-        maxHeight: 400,
+        minHeight: 180,
         lockAspectRatio: true
       }}
     >
